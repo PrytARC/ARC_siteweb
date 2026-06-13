@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Apidon Royal College — Prytanée Civil bilingue à Loumbila, Ouagadougou. Formation du collège à la terminale. Discipline, humilité, rigueur.">
+  <title>Apidon Royal College — ARC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --ciel: #5AADE0;
+  --ciel-dark: #3d8fc0;
+  --or: #C8960C;
+  --nuit: #1A3A6B;
+  --blanc: #ffffff;
+  --fond: #F8FAFB;
+  --texte: #111827;
+  --gris: #4B5563;
+  --border: #D1D5DB;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Montserrat', system-ui, sans-serif;
+  --radius: 4px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--font-sans); color: var(--texte); background: var(--blanc); overflow-x: hidden; line-height: 1.65; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; font-family: var(--font-sans); border: none; background: none; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+.tc { text-align: center; }
+.pad { padding: 5rem 1.5rem; }
+.bg-fond { background: var(--fond); }
+.bg-nuit { background: var(--nuit); }
+.label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--or); margin-bottom: 8px; }
+.section-h2 { font-family: var(--font-serif); font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 700; color: var(--nuit); line-height: 1.15; margin-bottom: 1.2rem; }
+.filet { width: 48px; height: 3px; background: var(--or); margin-bottom: 1.8rem; }
+.filet-center { margin-left: auto; margin-right: auto; }
+
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; border-radius: var(--radius); font-size: 12px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; transition: all .2s; border: 2px solid transparent; cursor: pointer; }
+.btn-or { background: var(--or); color: var(--nuit); border-color: var(--or); }
+.btn-or:hover { background: #b5840a; }
+.btn-outline-white { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.6); }
+.btn-outline-white:hover { background: rgba(255,255,255,.12); }
+
+/* NAV */
+#nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 64px; background: rgba(255,255,255,0); transition: background .3s, box-shadow .3s; }
+#nav.scrolled { background: rgba(255,255,255,.97); box-shadow: 0 1px 0 var(--border); backdrop-filter: blur(8px); }
+#nav.scrolled .nb { color: var(--nuit); }
+#nav.scrolled .nb:hover, #nav.scrolled .nb.on { color: var(--ciel); border-bottom-color: var(--ciel); }
+#nav.scrolled .logo-name { color: var(--nuit); }
+#nav.scrolled .logo-sub { color: var(--or); }
+.nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.logo-wrap { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.logo-name { font-family: var(--font-sans); font-size: 14px; font-weight: 800; color: #fff; line-height: 1.1; letter-spacing: .2px; transition: color .3s; }
+.logo-sub { font-size: 8px; color: var(--or); letter-spacing: 2px; text-transform: uppercase; font-weight: 600; transition: color .3s; }
+.nav-links { display: flex; gap: 1.4rem; }
+.nb { color: rgba(255,255,255,.88); font-size: 11px; font-weight: 700; letter-spacing: .4px; text-transform: uppercase; padding: 4px 0; border-bottom: 2px solid transparent; transition: all .2s; background: none; border-top: none; border-left: none; border-right: none; }
+.nb:hover, .nb.on { color: var(--or); border-bottom-color: var(--or); }
+.nav-cta { background: var(--or); color: var(--nuit); padding: 8px 20px; border-radius: var(--radius); font-size: 11px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; transition: background .2s; outline: 2px solid var(--nuit); outline-offset: -1px; }
+.nav-cta:hover { background: #F5C518; }
+.burger { display: none; flex-direction: column; gap: 5px; padding: 4px; }
+.burger span { width: 22px; height: 2px; background: #fff; border-radius: 2px; transition: background .3s; }
+#nav.scrolled .burger span { background: var(--nuit); }
+.mobile-menu { display: none; background: #fff; border-top: 2px solid var(--border); padding: 1rem 1.5rem; }
+.mobile-menu.open { display: block; }
+.mobile-menu .nb { display: block; color: var(--nuit); padding: 10px 0; border-bottom: 1px solid var(--border); border-right: none; border-left: none; border-top: none; width: 100%; text-align: left; font-size: 12px; }
+
+.page { display: none; }
+.page.on { display: block; }
+
+/* HERO avec photo portail */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(rgba(26,58,107,.55), rgba(26,58,107,.45)),
+              url('https://i.postimg.cc/7Y1CfQ84/Screenshot-20260613-130911-com-anthropic-claude-Main-Activity.jpg') center/cover no-repeat;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden; padding-top: 64px;
+}
+.hero-fallback {
+  min-height: 100vh;
+  background: linear-gradient(155deg, #1b4d8e 0%, #2e72ba 40%, #5AADE0 100%);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden; padding-top: 64px;
+}
+.hero-bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px); background-size: 64px 64px; pointer-events: none; }
+@keyframes cloudDrift { 0% { transform: translateX(-150px); opacity: 0; } 8% { opacity: .35; } 92% { opacity: .35; } 100% { transform: translateX(110vw); opacity: 0; } }
+.cloud { position: absolute; pointer-events: none; animation: cloudDrift linear infinite; }
+.hero-content { position: relative; z-index: 2; text-align: center; padding: 0 1.5rem; max-width: 820px; }
+.hero-eyebrow { display: inline-block; background: rgba(255,255,255,.13); border: 1.5px solid rgba(255,255,255,.35); padding: 5px 20px; border-radius: 2px; margin-bottom: 1.8rem; font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #fff; }
+.hero-h1 { font-family: var(--font-serif); font-size: clamp(3rem, 7.5vw, 5.5rem); font-weight: 900; color: #fff; line-height: 1.05; margin-bottom: .3rem; }
+.hero-h1 em { color: var(--or); font-style: italic; }
+.hero-motto { font-size: clamp(.9rem, 1.8vw, 1.05rem); color: rgba(255,255,255,.8); letter-spacing: 2.5px; margin-bottom: .8rem; font-weight: 600; }
+.hero-desc { font-size: .9rem; color: rgba(255,255,255,.75); line-height: 1.9; max-width: 540px; margin: 0 auto 2.5rem; }
+.hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.hero-stats { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(15,40,80,.55); border-top: 1.5px solid rgba(255,255,255,.15); backdrop-filter: blur(6px); }
+.stats-inner { max-width: 880px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); }
+.stat { padding: 1.2rem 1rem; text-align: center; border-right: 1px solid rgba(255,255,255,.12); }
+.stat:last-child { border-right: none; }
+.stat-n { font-family: var(--font-serif); font-size: 2rem; font-weight: 900; color: var(--or); line-height: 1; }
+.stat-l { font-size: 9px; color: rgba(255,255,255,.6); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; font-weight: 600; }
+
+/* APERÇUS */
+.apercu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.2rem; margin-top: 3rem; }
+.apercu-card { background: var(--blanc); border-radius: var(--radius); padding: 2rem 1.5rem; border: 2px solid var(--border); border-top: 4px solid var(--ciel); cursor: pointer; transition: transform .22s, box-shadow .22s; }
+.apercu-card:hover { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(0,0,0,.12); border-top-color: var(--or); }
+.apercu-icon { font-size: 28px; margin-bottom: 12px; }
+.apercu-title { font-size: 1rem; font-weight: 800; color: var(--nuit); margin-bottom: 8px; }
+.apercu-desc { font-size: 12px; color: var(--gris); line-height: 1.75; }
+.apercu-link { margin-top: 14px; font-size: 10px; font-weight: 800; color: var(--ciel); letter-spacing: .8px; text-transform: uppercase; }
+
+/* INSCRIPTION BAND */
+.inscrip-band { background: linear-gradient(135deg, var(--or), #F5C518); padding: 3rem 1.5rem; text-align: center; }
+.inscrip-band h2 { font-family: var(--font-serif); font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 900; color: var(--nuit); margin-bottom: .8rem; }
+.inscrip-band p { color: rgba(26,58,107,.75); font-size: .9rem; margin: 0 auto 1.8rem; max-width: 500px; }
+.btn-nuit { background: var(--nuit); color: #fff; border-color: var(--nuit); }
+.btn-nuit:hover { background: #0f2547; }
+
+/* CTA BAND */
+.cta-band { background: var(--nuit); padding: 4.5rem 1.5rem; text-align: center; }
+.cta-band h2 { font-family: var(--font-serif); font-size: clamp(1.7rem, 3vw, 2.3rem); font-weight: 700; color: #fff; margin-bottom: .8rem; }
+.cta-band p { color: rgba(255,255,255,.65); font-size: .9rem; line-height: 1.9; margin: 0 auto 2rem; max-width: 520px; }
+
+/* DIRECTEUR */
+.dir-grid { display: grid; grid-template-columns: 1fr 1.8fr; gap: 4rem; align-items: start; }
+.dir-img-wrap { position: relative; }
+.dir-img-wrap img { width: 100%; border-radius: var(--radius); object-fit: cover; aspect-ratio: 3/4; box-shadow: 0 12px 40px rgba(0,0,0,.12); }
+.dir-badge { position: absolute; bottom: -16px; right: -16px; background: var(--or); padding: 1rem 1.2rem; border-radius: var(--radius); text-align: center; box-shadow: 0 4px 16px rgba(0,0,0,.1); border: 2px solid var(--nuit); }
+.dir-badge-n { font-family: var(--font-serif); font-size: 1.8rem; font-weight: 900; color: var(--nuit); line-height: 1; }
+.dir-badge-l { font-size: 9px; color: var(--nuit); letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
+.quote-mark { font-size: 72px; font-family: var(--font-serif); color: var(--ciel); opacity: .2; line-height: .3; margin-bottom: 1.5rem; }
+.quote-body { font-size: .95rem; line-height: 2; color: #333; margin-bottom: 1.2rem; }
+blockquote { font-family: var(--font-serif); font-size: 1.1rem; font-style: italic; color: var(--nuit); border-left: 3px solid var(--or); padding-left: 1.2rem; margin: 1.5rem 0; }
+.dir-name { font-size: 1.1rem; font-weight: 800; color: var(--nuit); }
+.dir-title { font-size: 11px; color: var(--or); letter-spacing: 2px; text-transform: uppercase; font-weight: 700; margin-top: 4px; }
+
+/* VIE SCOLAIRE */
+.rubrique-row { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center; margin-bottom: 5rem; }
+.rubrique-row:last-child { margin-bottom: 0; }
+.rubrique-icon { font-size: 40px; margin-bottom: 12px; }
+.rubrique-h { font-family: var(--font-serif); font-size: 1.6rem; font-weight: 700; color: var(--nuit); margin-bottom: .8rem; }
+.rubrique-p { font-size: .9rem; color: var(--gris); line-height: 1.9; }
+.rubrique-img { border-radius: 8px; overflow: hidden; }
+.rubrique-img img { width: 100%; height: 340px; object-fit: cover; }
+.valeurs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+.valeur-card { background: var(--blanc); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem 1.5rem; text-align: center; border-top: 4px solid var(--or); }
+.valeur-icon { font-size: 36px; margin-bottom: 12px; }
+.valeur-h { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 700; color: var(--nuit); margin-bottom: 10px; }
+.valeur-p { font-size: 12px; color: var(--gris); line-height: 1.8; }
+
+/* GALERIE */
+.gfil { padding: 7px 16px; border-radius: 20px; font-size: 12px; font-weight: 700; border: 2px solid var(--border); cursor: pointer; background: var(--blanc); color: var(--gris); transition: all .2s; }
+.gfil.active, .gfil:hover { background: var(--nuit); color: #fff; border-color: var(--nuit); }
+.galerie-grid { columns: 3; gap: 12px; margin-top: 2rem; }
+.galerie-grid .g-item { break-inside: avoid; margin-bottom: 12px; border-radius: 4px; overflow: hidden; }
+.galerie-grid .g-item img { width: 100%; display: block; transition: transform .4s; }
+.galerie-grid .g-item:hover img { transform: scale(1.03); }
+
+/* ADMISSIONS */
+.adm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.adm-steps { list-style: none; margin-top: 1.5rem; }
+.adm-steps li { display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: flex-start; }
+.adm-num { width: 36px; height: 36px; border-radius: 50%; background: var(--or); color: var(--nuit); font-weight: 900; font-size: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.adm-text strong { display: block; font-size: .95rem; font-weight: 700; color: var(--nuit); margin-bottom: 4px; }
+.adm-text span { font-size: 13px; color: var(--gris); }
+.adm-form-box { background: var(--fond); border: 1px solid var(--border); border-radius: 8px; padding: 2.5rem; }
+.adm-form-box h3 { font-family: var(--font-serif); font-size: 1.4rem; color: var(--nuit); margin-bottom: 1.5rem; }
+.adm-iframe-wrap { border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+.adm-iframe-wrap iframe { width: 100%; height: 520px; border: none; }
+.adm-btn-big { display: block; width: 100%; padding: 18px; background: var(--or); color: var(--nuit); font-weight: 900; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; border-radius: var(--radius); text-align: center; transition: background .2s; margin-top: 1rem; }
+.adm-btn-big:hover { background: #F5C518; }
+
+/* ACTUALITÉS */
+.actu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+.actu-card { background: var(--blanc); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: transform .2s, box-shadow .2s; }
+.actu-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,.1); }
+.actu-img { height: 200px; background: #e8f2fa; overflow: hidden; }
+.actu-img img { width: 100%; height: 100%; object-fit: cover; }
+.actu-body { padding: 1.5rem; }
+.actu-date { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--or); margin-bottom: 8px; }
+.actu-title { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 700; color: var(--nuit); margin-bottom: 10px; line-height: 1.3; }
+.actu-excerpt { font-size: 13px; color: var(--gris); line-height: 1.75; }
+
+/* CONTACT */
+.contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start; }
+.contact-info-item { display: flex; gap: 1rem; margin-bottom: 1.8rem; align-items: flex-start; }
+.contact-icon { width: 44px; height: 44px; background: rgba(90,173,224,.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.contact-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--or); margin-bottom: 4px; }
+.contact-value { font-size: .9rem; color: var(--texte); font-weight: 500; }
+.form-field { margin-bottom: 1.2rem; }
+.form-field label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--nuit); margin-bottom: 6px; }
+.form-field input, .form-field select, .form-field textarea { width: 100%; padding: 11px 14px; border: 2px solid var(--border); border-radius: var(--radius); font-family: var(--font-sans); font-size: 13px; color: var(--texte); outline: none; transition: border-color .2s; background: var(--blanc); }
+.form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--ciel); }
+.form-field textarea { resize: vertical; min-height: 120px; }
+.form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.submit-btn { width: 100%; padding: 14px; background: var(--nuit); color: #fff; font-weight: 800; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; border-radius: var(--radius); border: none; cursor: pointer; transition: background .2s; margin-top: .5rem; }
+.submit-btn:hover { background: #0f2547; }
+
+/* FOOTER */
+footer { background: #0f2040; color: rgba(255,255,255,.7); padding: 4rem 1.5rem 1.5rem; }
+.ft-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 2.5rem; max-width: 1100px; margin: 0 auto 3rem; }
+.ft-logo-name { font-size: 15px; font-weight: 800; color: #fff; }
+.ft-logo-sub { font-size: 9px; color: var(--or); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; }
+.ft-desc { font-size: 12px; line-height: 1.9; }
+.ft-col h4 { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--or); margin-bottom: 1rem; }
+.ft-col ul { list-style: none; }
+.ft-col ul li { margin-bottom: 8px; }
+.ft-col ul li button, .ft-col ul li a { font-size: 12px; color: rgba(255,255,255,.65); background: none; border: none; cursor: pointer; padding: 0; transition: color .2s; text-align: left; }
+.ft-col ul li button:hover, .ft-col ul li a:hover { color: var(--or); }
+.ft-bottom { max-width: 1100px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,.1); padding-top: 1.2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.ft-bottom p { font-size: 11px; }
+
+/* WHATSAPP FAB */
+.wa-fab { position: fixed; bottom: 24px; right: 24px; z-index: 999; width: 56px; height: 56px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,.25); transition: transform .2s; text-decoration: none; }
+.wa-fab:hover { transform: scale(1.08); }
+.wa-fab svg { width: 28px; height: 28px; fill: #fff; }
+
+/* PAGE HERO */
+.page-hero { background: linear-gradient(155deg, #1b4d8e, #5AADE0); padding: calc(64px + 3.5rem) 1.5rem 3.5rem; text-align: center; position: relative; overflow: hidden; }
+.page-hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px); background-size: 56px 56px; }
+.page-hero-label { position: relative; }
+.page-hero-h { font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; color: #fff; position: relative; }
+
+/* ══════════════════════
+   PANNEAU ADMIN
+══════════════════════ */
+#admin-trigger { position: fixed; bottom: 24px; left: 24px; z-index: 998; width: 40px; height: 40px; background: rgba(26,58,107,.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 1px solid rgba(26,58,107,.15); font-size: 16px; transition: background .2s; opacity: .5; }
+#admin-trigger:hover { background: rgba(26,58,107,.25); opacity: 1; }
+#admin-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 2000; align-items: center; justify-content: center; }
+#admin-overlay.open { display: flex; }
+#admin-panel { background: #fff; border-radius: 12px; width: min(95vw, 680px); max-height: 88vh; overflow-y: auto; box-shadow: 0 24px 80px rgba(0,0,0,.35); }
+#admin-login { padding: 3rem 2.5rem; text-align: center; }
+#admin-login h2 { font-family: var(--font-serif); font-size: 1.8rem; color: var(--nuit); margin-bottom: .5rem; }
+#admin-login p { font-size: 13px; color: var(--gris); margin-bottom: 2rem; }
+#admin-login input { width: 100%; padding: 12px 14px; border: 2px solid var(--border); border-radius: var(--radius); font-size: 14px; margin-bottom: 1rem; outline: none; font-family: var(--font-sans); }
+#admin-login input:focus { border-color: var(--ciel); }
+#admin-login button { width: 100%; padding: 13px; background: var(--nuit); color: #fff; font-weight: 800; font-size: 13px; border-radius: var(--radius); border: none; cursor: pointer; }
+#admin-error { color: #dc2626; font-size: 12px; margin-top: 8px; display: none; }
+#admin-content { padding: 2rem 2.5rem; }
+.admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 2px solid var(--border); }
+.admin-header h2 { font-family: var(--font-serif); font-size: 1.5rem; color: var(--nuit); }
+.admin-close { font-size: 22px; cursor: pointer; color: var(--gris); background: none; border: none; }
+.admin-tabs { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.admin-tab { padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 700; border: 2px solid var(--border); cursor: pointer; background: none; transition: all .2s; }
+.admin-tab.active { background: var(--nuit); color: #fff; border-color: var(--nuit); }
+.admin-section { display: none; }
+.admin-section.active { display: block; }
+.admin-field { margin-bottom: 1.5rem; }
+.admin-field label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--nuit); margin-bottom: 6px; }
+.admin-field input, .admin-field textarea, .admin-field select { width: 100%; padding: 10px 12px; border: 2px solid var(--border); border-radius: var(--radius); font-family: var(--font-sans); font-size: 13px; outline: none; transition: border-color .2s; }
+.admin-field input:focus, .admin-field textarea:focus, .admin-field select:focus { border-color: var(--ciel); }
+.admin-field textarea { min-height: 90px; resize: vertical; }
+.admin-save { padding: 11px 28px; background: var(--nuit); color: #fff; font-weight: 800; font-size: 12px; letter-spacing: .8px; text-transform: uppercase; border-radius: var(--radius); border: none; cursor: pointer; transition: background .2s; }
+.admin-save:hover { background: #0f2547; }
+.admin-save-ok { color: #16a34a; font-size: 12px; font-weight: 700; margin-left: 12px; display: none; }
+.actu-admin-item { background: var(--fond); border: 1px solid var(--border); border-radius: 8px; padding: 1.2rem; margin-bottom: 1rem; }
+.actu-admin-item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: .8rem; }
+.actu-admin-item-header strong { font-size: 13px; font-weight: 700; color: var(--nuit); }
+.del-btn { font-size: 11px; color: #dc2626; background: none; border: none; cursor: pointer; font-weight: 700; }
+.add-actu-btn { padding: 10px 20px; background: var(--ciel); color: #fff; font-size: 12px; font-weight: 700; border-radius: var(--radius); border: none; cursor: pointer; margin-bottom: 1.5rem; }
+.photo-upload-note { font-size: 11px; color: var(--gris); margin-top: 6px; }
+.admin-divider { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .dir-grid, .adm-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .valeurs-grid { grid-template-columns: 1fr 1fr; }
+  .rubrique-row { grid-template-columns: 1fr; gap: 2rem; }
+  .ft-top { grid-template-columns: 1fr 1fr; }
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  .galerie-grid { columns: 2; }
+}
+@media (max-width: 640px) {
+  .nav-links { display: none; }
+  .nav-cta { display: none; }
+  .burger { display: flex; }
+  .valeurs-grid { grid-template-columns: 1fr; }
+  .ft-top { grid-template-columns: 1fr; }
+  .form-row-2 { grid-template-columns: 1fr; }
+  .galerie-grid { columns: 1; }
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <div class="logo-wrap" onclick="go('accueil')">
+      <div style="width:36px;height:36px;background:var(--or);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--nuit);font-size:14px;font-family:var(--font-sans);">ARC</div>
+      <div>
+        <div class="logo-name">Apidon Royal College</div>
+        <div class="logo-sub">Prytanée Civil · Loumbila</div>
+      </div>
+    </div>
+    <div class="nav-links">
+      <button class="nb on" onclick="go('accueil')">Accueil</button>
+      <button class="nb" onclick="go('directeur')">Directeur</button>
+      <button class="nb" onclick="go('vie')">Vie scolaire</button>
+      <button class="nb" onclick="go('galerie')">Galerie</button>
+      <button class="nb" onclick="go('admissions')">Admissions</button>
+      <button class="nb" onclick="go('actualites')">Actualités</button>
+      <button class="nb" onclick="go('contact')">Contact</button>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <button class="nav-cta" onclick="go('admissions')">S'inscrire</button>
+      <button class="burger" onclick="toggleMobile()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="nb" onclick="go('accueil')">Accueil</button>
+    <button class="nb" onclick="go('directeur')">Mot du Directeur</button>
+    <button class="nb" onclick="go('vie')">Vie scolaire</button>
+    <button class="nb" onclick="go('galerie')">Galerie</button>
+    <button class="nb" onclick="go('admissions')">Admissions</button>
+    <button class="nb" onclick="go('actualites')">Actualités</button>
+    <button class="nb" onclick="go('contact')">Contact</button>
+  </div>
+</nav>
+
+<!-- PAGE ACCUEIL -->
+<div id="p-accueil" class="page on">
+
+  <section class="hero" id="hero-section">
+    <div class="hero-bg-grid"></div>
+    <div class="cloud" style="top:8%;animation-duration:38s;animation-delay:0s;opacity:.5">
+      <svg width="300" height="120" viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg"><defs><filter id="c1"><feGaussianBlur stdDeviation="3"/></filter></defs><g filter="url(#c1)"><ellipse cx="150" cy="85" rx="130" ry="30" fill="rgba(255,255,255,0.7)"/><ellipse cx="100" cy="68" rx="70" ry="45" fill="rgba(255,255,255,0.65)"/><ellipse cx="165" cy="58" rx="80" ry="50" fill="rgba(255,255,255,0.72)"/><ellipse cx="220" cy="70" rx="60" ry="38" fill="rgba(255,255,255,0.62)"/><ellipse cx="145" cy="40" rx="50" ry="35" fill="rgba(255,255,255,0.78)"/></g></svg>
+    </div>
+    <div class="cloud" style="top:40%;animation-duration:55s;animation-delay:18s;opacity:.35">
+      <svg width="220" height="90" viewBox="0 0 220 90" xmlns="http://www.w3.org/2000/svg"><defs><filter id="c2"><feGaussianBlur stdDeviation="4"/></filter></defs><g filter="url(#c2)"><ellipse cx="110" cy="65" rx="100" ry="22" fill="rgba(255,255,255,0.6)"/><ellipse cx="75" cy="52" rx="55" ry="38" fill="rgba(255,255,255,0.55)"/><ellipse cx="145" cy="45" rx="60" ry="40" fill="rgba(255,255,255,0.62)"/></g></svg>
+    </div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Loumbila · Ouagadougou · Burkina Faso · Fondé en 2018</div>
+      <h1 class="hero-h1">Apidon<br><em>Royal College</em></h1>
+      <p class="hero-motto">Discipline · Humilité · Rigueur</p>
+      <p style="font-size:.8rem;color:rgba(255,255,255,.65);letter-spacing:1px;margin-bottom:.8rem;font-style:italic">Écrire le changement · Construire le futur · Bâtir la nation</p>
+      <p class="hero-desc">Prytanée Civil bilingue formant les leaders de demain au cœur de l'Afrique de l'Ouest. Du collège à la terminale, dans un cadre structurant et rigoureux.</p>
+      <div class="hero-btns">
+        <button class="btn btn-or" onclick="go('admissions')">S'inscrire 2026–2027</button>
+        <button class="btn btn-outline-white" onclick="go('vie')">Découvrir l'école</button>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stats-inner">
+        <div class="stat"><div class="stat-n">500+</div><div class="stat-l">Élèves formés</div></div>
+        <div class="stat"><div class="stat-n">6 ans</div><div class="stat-l">d'excellence</div></div>
+        <div class="stat"><div class="stat-n">Fr / En</div><div class="stat-l">Bilingue</div></div>
+        <div class="stat"><div class="stat-n">Bac</div><div class="stat-l">6ème → Terminale</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Aperçus -->
+  <section class="pad bg-fond">
+    <div class="container">
+      <div class="tc">
+        <span class="label">Explorer ARC</span>
+        <h2 class="section-h2">Tout ce que vous voulez savoir</h2>
+      </div>
+      <div class="apercu-grid">
+        <div class="apercu-card" onclick="go('directeur')">
+          <div class="apercu-icon">👤</div>
+          <div class="apercu-title">Mot du Directeur</div>
+          <p class="apercu-desc">La vision du Dr. Gambetta Nacro, fondateur de ARC et du Groupe Apidon International.</p>
+          <div class="apercu-link">Lire le message →</div>
+        </div>
+        <div class="apercu-card" onclick="go('vie')">
+          <div class="apercu-icon">🎓</div>
+          <div class="apercu-title">Vie scolaire</div>
+          <p class="apercu-desc">Internat, discipline, uniformes officiels bleu & jaune, sport et activités parascolaires.</p>
+          <div class="apercu-link">Découvrir →</div>
+        </div>
+        <div class="apercu-card" onclick="go('galerie')">
+          <div class="apercu-icon">📸</div>
+          <div class="apercu-title">Galerie photos</div>
+          <p class="apercu-desc">Cérémonies, classes, sport, campus — revivez tous les moments forts de ARC.</p>
+          <div class="apercu-link">Voir la galerie →</div>
+        </div>
+        <div class="apercu-card" onclick="go('admissions')">
+          <div class="apercu-icon">📋</div>
+          <div class="apercu-title">Admissions</div>
+          <p class="apercu-desc" id="adm-desc-home">Places limitées pour 2026–2027. Processus simple, transparent et rapide.</p>
+          <div class="apercu-link">S'inscrire →</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bouton inscription en plein -->
+  <section class="inscrip-band">
+    <div class="container">
+      <h2 id="inscrip-title">Inscriptions 2026–2027 ouvertes</h2>
+      <p id="inscrip-text">Les dossiers d'admission pour l'année scolaire 2026–2027 sont disponibles. Rejoignez la famille ARC dès aujourd'hui.</p>
+      <a href="https://forms.gle/WyYCV99WzE89Z1G89" target="_blank" rel="noopener" class="btn btn-nuit" style="display:inline-flex;margin:0 auto;">Remplir le formulaire d'inscription</a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band">
+    <div class="container tc">
+      <span class="label" style="color:var(--or)">Always striving for the best</span>
+      <h2>Rejoignez la famille ARC</h2>
+      <p>Un environnement rigoureux, bienveillant et bilingue pour préparer vos enfants à l'excellence.</p>
+      <button class="btn btn-or" onclick="go('contact')">Nous contacter</button>
+    </div>
+  </section>
+
+</div><!-- /accueil -->
+
+<!-- PAGE DIRECTEUR -->
+<div id="p-directeur" class="page">
+  <div class="page-hero">
+    <span class="label page-hero-label" style="color:rgba(255,255,255,.7)">Leadership & Vision</span>
+    <h1 class="page-hero-h">Mot du Directeur</h1>
+  </div>
+  <section class="pad">
+    <div class="container">
+      <div class="dir-grid">
+        <div class="dir-img-wrap">
+          <div id="dir-photo-wrap" style="width:100%;aspect-ratio:3/4;background:linear-gradient(135deg,#1A3A6B,#5AADE0);border-radius:4px;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:5rem;">
+            <span id="dir-photo-placeholder">👔</span>
+            <img id="dir-photo-img" src="" alt="Photo du Directeur" style="display:none;width:100%;height:100%;object-fit:cover;object-position:top;">
+          </div>
+          <div class="dir-badge"><div class="dir-badge-n">ARC</div><div class="dir-badge-l">Fondateur</div></div>
+        </div>
+        <div style="padding-top:2rem">
+          <span class="label">Message du fondateur</span>
+          <h2 class="section-h2" id="dir-nom">Dr. Gambetta Aboubakar Nacro</h2>
+          <div class="filet"></div>
+          <div class="quote-mark">"</div>
+          <p class="quote-body" id="dir-message">L'Apidon Royal College est né d'une conviction profonde : l'Afrique a besoin de leaders disciplinés, humbles et rigoureux. Nous ne formons pas seulement des élèves — nous façonnons des caractères, des âmes capables de transformer leur continent.</p>
+          <blockquote id="dir-citation">Notre devise n'est pas un slogan. C'est un engagement quotidien envers l'excellence, porté par chaque enseignant, chaque parent, chaque élève.</blockquote>
+          <p class="quote-body" id="dir-message2">Bienvenue dans notre famille, où chaque enfant est traité comme un futur bâtisseur de nation.</p>
+          <div style="margin-top:2rem">
+            <div class="dir-name" id="dir-nom2">Dr. NGA — Gambetta Aboubakar Nacro</div>
+            <div class="dir-title">Fondateur & Directeur Général — Apidon International Group</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PAGE VIE SCOLAIRE -->
+<div id="p-vie" class="page">
+  <div class="page-hero">
+    <span class="label page-hero-label" style="color:rgba(255,255,255,.7)">Campus & Programmes</span>
+    <h1 class="page-hero-h">Vie scolaire à ARC</h1>
+  </div>
+  <section class="pad">
+    <div class="container">
+      <div class="rubrique-row">
+        <div>
+          <div class="rubrique-icon">🏠</div>
+          <div class="filet"></div>
+          <h2 class="rubrique-h">Internat</h2>
+          <p class="rubrique-p">Hébergement complet pour les collégiens et lycéens. Suivi des devoirs, restauration équilibrée et activités du soir dans un cadre sécurisé. Nos éducateurs assurent un encadrement permanent 24h/24.</p>
+        </div>
+        <div class="rubrique-img" id="internat-img-wrap">
+          <div id="internat-placeholder" style="width:100%;height:340px;background:linear-gradient(135deg,#5AADE0,#1A3A6B);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:4rem;">🏠</div>
+          <img id="internat-img" src="" alt="Internat ARC" style="display:none;width:100%;height:340px;object-fit:cover;border-radius:8px;">
+        </div>
+      </div>
+      <div class="rubrique-row">
+        <div class="rubrique-img" style="order:-1">
+          <div id="prog-placeholder" style="width:100%;height:340px;background:linear-gradient(135deg,#C8960C,#1A3A6B);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:4rem;">📚</div>
+          <img id="prog-img" src="" alt="Programmes ARC" style="display:none;width:100%;height:340px;object-fit:cover;border-radius:8px;">
+        </div>
+        <div>
+          <div class="rubrique-icon">📚</div>
+          <div class="filet"></div>
+          <h2 class="rubrique-h">Programmes bilingues</h2>
+          <p class="rubrique-p">Du CE1 à la Terminale, nos programmes suivent les curricula nationaux et sont enrichis par un enseignement bilingue français-anglais. Nos enseignants qualifiés préparent les élèves aux examens nationaux et aux concours.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="pad bg-fond">
+    <div class="container">
+      <div class="tc">
+        <span class="label">Nos piliers</span>
+        <h2 class="section-h2">Les valeurs d'ARC</h2>
+      </div>
+      <div class="valeurs-grid">
+        <div class="valeur-card"><div class="valeur-icon">⚡</div><div class="valeur-h">Discipline</div><p class="valeur-p">La discipline est le fondement de toute réussite. À ARC, elle s'apprend dans le respect mutuel et la rigueur quotidienne.</p></div>
+        <div class="valeur-card"><div class="valeur-icon">🙏</div><div class="valeur-h">Humilité</div><p class="valeur-p">L'humilité ouvre les portes de la sagesse. Nos élèves apprennent à grandir sans arrogance, à écouter avant de parler.</p></div>
+        <div class="valeur-card"><div class="valeur-icon">🎯</div><div class="valeur-h">Rigueur</div><p class="valeur-p">La rigueur dans le travail, dans la présentation, dans la pensée — c'est ce qui distingue les bâtisseurs de demain.</p></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PAGE GALERIE -->
+<div id="p-galerie" class="page">
+  <div class="page-hero">
+    <span class="label page-hero-label" style="color:rgba(255,255,255,.7)">Album photo</span>
+    <h1 class="page-hero-h">Galerie ARC</h1>
+  </div>
+  <section class="pad">
+    <div class="container">
+      <p style="color:var(--gris);font-size:.9rem;margin-bottom:2rem;text-align:center">Les grands moments de la vie à Apidon Royal College.</p>
+      <!-- Filtres catégories -->
+      <div id="galerie-filtres" style="display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;margin-bottom:2rem;">
+        <button class="gfil active" onclick="filterGalerie('tout')">Tout</button>
+        <button class="gfil" onclick="filterGalerie('ceremonies')">🎓 Cérémonies</button>
+        <button class="gfil" onclick="filterGalerie('sport')">⚽ Sport</button>
+        <button class="gfil" onclick="filterGalerie('classes')">📖 Classes</button>
+        <button class="gfil" onclick="filterGalerie('campus')">🏫 Campus</button>
+        <button class="gfil" onclick="filterGalerie('autre')">✨ Autre</button>
+      </div>
+      <div class="galerie-grid" id="galerie-grid">
+        <div style="grid-column:1/-1;text-align:center;padding:3rem 0;color:var(--gris);font-size:.9rem;">Aucune photo pour le moment. Ajoutez-en via le panneau administrateur.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PAGE ADMISSIONS -->
+<div id="p-admissions" class="page">
+  <div class="page-hero">
+    <span class="label page-hero-label" style="color:rgba(255,255,255,.7)">Rejoindre ARC</span>
+    <h1 class="page-hero-h">Admissions 2026–2027</h1>
+  </div>
+  <section class="pad">
+    <div class="container">
+      <div class="adm-grid">
+        <div>
+          <span class="label">Comment ça marche</span>
+          <h2 class="section-h2">Processus d'admission</h2>
+          <div class="filet"></div>
+          <ul class="adm-steps">
+            <li><div class="adm-num">1</div><div class="adm-text"><strong>Remplir le formulaire</strong><span>Complétez le formulaire en ligne avec les informations de votre enfant.</span></div></li>
+            <li><div class="adm-num">2</div><div class="adm-text"><strong>Dépôt du dossier</strong><span>Bulletin scolaire, extrait de naissance, certificat médical et photos d'identité.</span></div></li>
+            <li><div class="adm-num">3</div><div class="adm-text"><strong>Entretien & évaluation</strong><span>Rencontre avec l'équipe pédagogique pour évaluer les aptitudes de l'élève.</span></div></li>
+            <li><div class="adm-num">4</div><div class="adm-text"><strong>Confirmation d'admission</strong><span>Notification officielle et paiement des frais de scolarité pour confirmer la place.</span></div></li>
+          </ul>
+          <div style="background:var(--fond);border:1px solid var(--border);border-radius:8px;padding:1.5rem;margin-top:2rem">
+            <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--or);margin-bottom:.8rem">Contact admissions</div>
+            <p style="font-size:.9rem;color:var(--texte);margin-bottom:.5rem">📞 +226 XX XX XX XX</p>
+            <p style="font-size:.9rem;color:var(--texte)">📍 Loumbila, Ouagadougou, Burkina Faso</p>
+          </div>
+        </div>
+        <div class="adm-form-box">
+          <h3>Formulaire d'inscription en ligne</h3>
+          <p style="font-size:13px;color:var(--gris);margin-bottom:1.5rem">Remplissez le formulaire ci-dessous ou cliquez sur le bouton pour l'ouvrir dans un nouvel onglet.</p>
+          <a href="https://forms.gle/WyYCV99WzE89Z1G89" target="_blank" rel="noopener" class="adm-btn-big">📋 Ouvrir le formulaire d'inscription</a>
+          <hr style="border:none;border-top:1px solid var(--border);margin:2rem 0">
+          <div class="adm-iframe-wrap">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdXzPP6hHoHVBHE6lfzN7YxZzBlFCpP_3hNJAXuS2Gh0Fsjag/viewform?embedded=true" title="Formulaire d'inscription ARC" loading="lazy">Chargement du formulaire…</iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PAGE ACTUALITÉS -->
+<div id="p-actualites" class="page">
+  <div class="page-hero">
+    <span class="label page-hero-label" style="color:rgba(255,255,255,.7)">Vie de l'école</span>
+    <h1 class="page-hero-h">Actualités</h1>
+  </div>
+  <section class="pad">
+    <div class="container">
+      <div class="actu-grid" id="actu-grid">
+        <!-- Rempli par JS depuis localStorage -->
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PAGE CONTACT -->
+<div id="p-contact" class="page">
+  <div class="page-hero">
+    <span class="label page-hero-label" style="color:rgba(255,255,255,.7)">Prenons contact</span>
+    <h1 class="page-hero-h">Contactez ARC</h1>
+  </div>
+  <section class="pad">
+    <div class="container">
+      <div class="contact-grid">
+        <div>
+          <span class="label">Nos coordonnées</span>
+          <h2 class="section-h2">Nous sommes là pour vous</h2>
+          <div class="filet"></div>
+          <div class="contact-info-item"><div class="contact-icon">📍</div><div><div class="contact-label">Adresse</div><div class="contact-value" id="contact-adresse">Loumbila, Ouagadougou, Burkina Faso</div></div></div>
+          <div class="contact-info-item"><div class="contact-icon">📞</div><div><div class="contact-label">Téléphone</div><div class="contact-value" id="contact-tel">+226 XX XX XX XX</div></div></div>
+          <div class="contact-info-item"><div class="contact-icon">✉️</div><div><div class="contact-label">Email</div><div class="contact-value" id="contact-email">contact@apidonroyalcollege.com</div></div></div>
+          <div class="contact-info-item"><div class="contact-icon">🕐</div><div><div class="contact-label">Horaires</div><div class="contact-value" id="contact-horaires">Lun–Ven : 7h30–18h · Sam : 7h30–13h</div></div></div>
+        </div>
+        <div>
+          <h3 style="font-family:var(--font-serif);font-size:1.4rem;color:var(--nuit);margin-bottom:1.5rem">Envoyez-nous un message</h3>
+          <form onsubmit="submitContact(event)">
+            <div class="form-row-2">
+              <div class="form-field"><label>Prénom</label><input type="text" placeholder="Votre prénom" required></div>
+              <div class="form-field"><label>Nom</label><input type="text" placeholder="Votre nom" required></div>
+            </div>
+            <div class="form-field"><label>Email</label><input type="email" placeholder="votre@email.com" required></div>
+            <div class="form-field"><label>Objet</label>
+              <select><option>Admissions</option><option>Informations générales</option><option>Partenariat</option><option>Autre</option></select>
+            </div>
+            <div class="form-field"><label>Message</label><textarea placeholder="Votre message…" required></textarea></div>
+            <button type="submit" class="submit-btn">Envoyer le message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-top">
+    <div>
+      <div class="ft-logo-name">Apidon Royal College</div>
+      <div class="ft-logo-sub">Prytanée Civil · Loumbila</div>
+      <p class="ft-desc">Prytanée Civil bilingue formant les leaders de demain au cœur de l'Afrique de l'Ouest. Discipline, Humilité, Rigueur.</p>
+    </div>
+    <div class="ft-col"><h4>Navigation</h4><ul>
+      <li><button onclick="go('accueil')">Accueil</button></li>
+      <li><button onclick="go('directeur')">Mot du Directeur</button></li>
+      <li><button onclick="go('vie')">Vie scolaire</button></li>
+      <li><button onclick="go('galerie')">Galerie</button></li>
+    </ul></div>
+    <div class="ft-col"><h4>Admissions</h4><ul>
+      <li><button onclick="go('admissions')">S'inscrire en ligne</button></li>
+      <li><button onclick="go('admissions')">Processus d'admission</button></li>
+      <li><button onclick="go('contact')">Contact admissions</button></li>
+    </ul></div>
+    <div class="ft-col"><h4>Contact</h4><ul>
+      <li><a>📍 Loumbila, Ouagadougou</a></li>
+      <li><a>📞 +226 XX XX XX XX</a></li>
+      <li><a href="https://forms.gle/WyYCV99WzE89Z1G89" target="_blank">📋 Formulaire inscription</a></li>
+    </ul></div>
+  </div>
+  <div class="ft-bottom">
+    <p>© 2026 Apidon Royal College. Tous droits réservés.</p>
+    <p style="font-size:10px;color:rgba(255,255,255,.4)">Always striving for the best</p>
+  </div>
+</footer>
+
+<!-- WhatsApp FAB -->
+<a class="wa-fab" href="https://wa.me/22600000000" target="_blank" rel="noopener" title="WhatsApp ARC">
+  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C8.82 3 3 8.82 3 16c0 2.37.63 4.6 1.73 6.53L3 29l6.68-1.7A13 13 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3Zm7.02 18.02c-.3.84-1.5 1.55-2.46 1.75-.65.13-1.5.24-4.36-1-3.65-1.56-6-5.2-6.18-5.44-.17-.24-1.42-1.9-1.42-3.62s.9-2.57 1.22-2.92c.3-.34.66-.42.88-.42l.63.01c.2.01.47-.07.73.56l1.05 2.57c.1.22.05.47-.07.65l-.3.43-.44.5c-.14.16-.3.32-.13.64.18.32.78 1.3 1.67 2.1 1.15 1.03 2.12 1.35 2.42 1.5.3.16.48.13.66-.08l.44-.55c.22-.28.45-.22.75-.13l2.4 1.13c.3.14.5.22.57.34.08.13.08.75-.22 1.58Z"/></svg>
+</a>
+
+<!-- Bouton admin discret -->
+<button id="admin-trigger" onclick="openAdmin()" title="Administration">⚙️</button>
+
+<!-- PANNEAU ADMIN -->
+<div id="admin-overlay">
+  <!-- LOGIN -->
+  <div id="admin-login" style="background:#fff;border-radius:12px;width:min(95vw,400px);padding:3rem 2.5rem;box-shadow:0 24px 80px rgba(0,0,0,.3);">
+    <h2 style="font-family:var(--font-serif);font-size:1.8rem;color:var(--nuit);margin-bottom:.5rem;text-align:center">Administration</h2>
+    <p style="font-size:13px;color:var(--gris);margin-bottom:2rem;text-align:center">Accès réservé à l'équipe ARC</p>
+    <input type="password" id="admin-pwd" placeholder="Mot de passe" onkeydown="if(event.key==='Enter')checkPwd()">
+    <button onclick="checkPwd()" style="width:100%;padding:13px;background:var(--nuit);color:#fff;font-weight:800;font-size:13px;border-radius:var(--radius);border:none;cursor:pointer;margin-top:.5rem">Connexion</button>
+    <div id="admin-error" style="color:#dc2626;font-size:12px;margin-top:8px;text-align:center;display:none">Mot de passe incorrect.</div>
+    <button onclick="closeAdmin()" style="display:block;margin:1rem auto 0;font-size:12px;color:var(--gris);background:none;border:none;cursor:pointer">Annuler</button>
+  </div>
+
+  <!-- CONTENU ADMIN -->
+  <div id="admin-content" style="display:none;background:#fff;border-radius:12px;width:min(95vw,700px);max-height:88vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,.35);">
+    <div style="padding:2rem 2.5rem">
+      <div class="admin-header">
+        <h2 style="font-family:var(--font-serif);font-size:1.5rem;color:var(--nuit)">🔧 Panneau Admin ARC</h2>
+        <button onclick="closeAdmin()" style="font-size:22px;cursor:pointer;color:var(--gris);background:none;border:none;">✕</button>
+      </div>
+      <div class="admin-tabs">
+        <button class="admin-tab active" onclick="switchTab('accueil')">Accueil</button>
+        <button class="admin-tab" onclick="switchTab('actualites')">Actualités</button>
+        <button class="admin-tab" onclick="switchTab('directeur')">Directeur</button>
+        <button class="admin-tab" onclick="switchTab('contact-info')">Contact</button>
+        <button class="admin-tab" onclick="switchTab('galerie-adm')">Galerie</button>
+      </div>
+
+      <!-- Section Accueil -->
+      <div class="admin-section active" id="tab-accueil">
+        <h3 style="font-size:1rem;font-weight:700;color:var(--nuit);margin-bottom:1.2rem">Textes de la page Accueil</h3>
+        <div class="admin-field"><label>Titre inscription (bandeau)</label><input type="text" id="a-inscrip-title" placeholder="Inscriptions 2026–2027 ouvertes"></div>
+        <div class="admin-field"><label>Texte inscription</label><textarea id="a-inscrip-text" rows="2"></textarea></div>
+        <div class="admin-field"><label>Texte description admissions (carte aperçu)</label><textarea id="a-adm-desc" rows="2"></textarea></div>
+        <button class="admin-save" onclick="saveAccueil()">💾 Enregistrer</button>
+        <span class="admin-save-ok" id="ok-accueil">✅ Sauvegardé !</span>
+      </div>
+
+      <!-- Section Actualités -->
+      <div class="admin-section" id="tab-actualites">
+        <h3 style="font-size:1rem;font-weight:700;color:var(--nuit);margin-bottom:1rem">Gestion des actualités</h3>
+        <button class="add-actu-btn" onclick="addActuForm()">+ Ajouter une actualité</button>
+        <div id="actu-admin-list"></div>
+        <hr class="admin-divider">
+        <div id="actu-form-zone" style="display:none">
+          <h4 style="font-size:.9rem;font-weight:700;color:var(--nuit);margin-bottom:1rem">Nouvelle actualité</h4>
+          <div class="admin-field"><label>Titre</label><input type="text" id="na-titre" placeholder="Titre de l'actualité"></div>
+          <div class="admin-field"><label>Date</label><input type="date" id="na-date"></div>
+          <div class="admin-field"><label>Extrait</label><textarea id="na-extrait" rows="3" placeholder="Résumé de l'actualité…"></textarea></div>
+          <div class="admin-field"><label>Emoji ou icône (optionnel)</label><input type="text" id="na-emoji" placeholder="🎓 ou laisser vide"></div>
+          <div class="admin-field"><label>Lien document (optionnel)</label><input type="text" id="na-doc" placeholder="https://drive.google.com/file/... ou lien PDF"><div class="photo-upload-note">PDF, Word, ou n'importe quel lien. Les visiteurs pourront cliquer "Voir le document".</div></div>
+          <button class="admin-save" onclick="saveActu()">💾 Publier</button>
+          <button onclick="document.getElementById('actu-form-zone').style.display='none'" style="margin-left:12px;font-size:12px;color:var(--gris);background:none;border:none;cursor:pointer">Annuler</button>
+        </div>
+      </div>
+
+      <!-- Section Directeur -->
+      <div class="admin-section" id="tab-directeur">
+        <h3 style="font-size:1rem;font-weight:700;color:var(--nuit);margin-bottom:1.2rem">Page Directeur</h3>
+        <div class="admin-field"><label>Nom complet</label><input type="text" id="a-dir-nom" placeholder="Dr. Gambetta Aboubakar Nacro"></div>
+        <div class="admin-field"><label>Message principal</label><textarea id="a-dir-msg" rows="4"></textarea></div>
+        <div class="admin-field"><label>Citation (entre guillemets)</label><textarea id="a-dir-citation" rows="2"></textarea></div>
+        <div class="admin-field"><label>Message secondaire</label><textarea id="a-dir-msg2" rows="3"></textarea></div>
+        <button class="admin-save" onclick="saveDirecteur()">💾 Enregistrer</button>
+        <span class="admin-save-ok" id="ok-directeur">✅ Sauvegardé !</span>
+      </div>
+
+      <!-- Section Contact -->
+      <div class="admin-section" id="tab-contact-info">
+        <h3 style="font-size:1rem;font-weight:700;color:var(--nuit);margin-bottom:1.2rem">Informations de contact</h3>
+        <div class="admin-field"><label>Adresse</label><input type="text" id="a-adresse"></div>
+        <div class="admin-field"><label>Téléphone</label><input type="text" id="a-tel"></div>
+        <div class="admin-field"><label>Email</label><input type="email" id="a-email"></div>
+        <div class="admin-field"><label>Horaires</label><input type="text" id="a-horaires"></div>
+        <button class="admin-save" onclick="saveContact()">💾 Enregistrer</button>
+        <span class="admin-save-ok" id="ok-contact">✅ Sauvegardé !</span>
+      </div>
+
+      <!-- Section Galerie -->
+      <div class="admin-section" id="tab-galerie-adm">
+        <h3 style="font-size:1rem;font-weight:700;color:var(--nuit);margin-bottom:.5rem">Galerie photos</h3>
+        <p style="font-size:12px;color:var(--gris);margin-bottom:1.2rem">Collez l'URL de l'image et choisissez sa catégorie. Hébergez vos photos sur <strong>postimg.cc</strong> (gratuit).</p>
+        <button class="add-actu-btn" onclick="document.getElementById('gal-form-zone').style.display='block'">+ Ajouter une photo</button>
+        <div id="gal-form-zone" style="display:none;background:var(--fond);border:1px solid var(--border);border-radius:8px;padding:1.5rem;margin-bottom:1.5rem;">
+          <div class="admin-field"><label>URL de l'image</label><input type="text" id="ng-url" placeholder="https://i.postimg.cc/xxx/photo.jpg"></div>
+          <div class="admin-field"><label>Légende (optionnel)</label><input type="text" id="ng-legende" placeholder="Cérémonie de remise de prix 2026"></div>
+          <div class="admin-field"><label>Catégorie</label>
+            <select id="ng-cat">
+              <option value="ceremonies">🎓 Cérémonies</option>
+              <option value="sport">⚽ Sport</option>
+              <option value="classes">📖 Classes</option>
+              <option value="campus">🏫 Campus</option>
+              <option value="autre">✨ Autre</option>
+            </select>
+          </div>
+          <button class="admin-save" onclick="saveGaleriePhoto()">💾 Ajouter à la galerie</button>
+          <button onclick="document.getElementById('gal-form-zone').style.display='none'" style="margin-left:12px;font-size:12px;color:var(--gris);background:none;border:none;cursor:pointer">Annuler</button>
+        </div>
+        <div id="gal-admin-list"></div>
+        <span class="admin-save-ok" id="ok-galerie" style="display:block;margin-top:.5rem">✅ Galerie mise à jour !</span>
+
+        <hr class="admin-divider">
+        <h4 style="font-size:.9rem;font-weight:700;color:var(--nuit);margin-bottom:1rem">📸 Photos du site</h4>
+        <p style="font-size:12px;color:var(--gris);margin-bottom:1.2rem">Ces photos apparaissent dans les pages du site (pas dans la galerie).</p>
+        <div class="admin-field">
+          <label>Photo du Directeur</label>
+          <input type="text" id="a-photo-directeur" placeholder="https://i.postimg.cc/xxx/directeur.jpg">
+          <div class="photo-upload-note">Apparaît sur la page "Mot du Directeur". Format portrait recommandé.</div>
+        </div>
+        <div class="admin-field">
+          <label>Photo Internat</label>
+          <input type="text" id="a-photo-internat" placeholder="https://i.postimg.cc/xxx/internat.jpg">
+          <div class="photo-upload-note">Apparaît sur la page "Vie scolaire" — section Internat.</div>
+        </div>
+        <div class="admin-field">
+          <label>Photo Programmes bilingues</label>
+          <input type="text" id="a-photo-prog" placeholder="https://i.postimg.cc/xxx/classe.jpg">
+          <div class="photo-upload-note">Apparaît sur la page "Vie scolaire" — section Programmes.</div>
+        </div>
+        <button class="admin-save" onclick="savePhotos()">💾 Enregistrer les photos</button>
+        <span class="admin-save-ok" id="ok-photos">✅ Photos enregistrées !</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// ── NAVIGATION ──────────────────────────────────────────────
+function go(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('on'));
+  document.getElementById('p-' + id).classList.add('on');
+  document.querySelectorAll('.nb').forEach(b => b.classList.toggle('on', b.getAttribute('onclick') && b.getAttribute('onclick').includes("'"+id+"'")));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  const mm = document.getElementById('mobileMenu');
+  if (mm.classList.contains('open')) mm.classList.remove('open');
+}
+function toggleMobile() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ── CONTACT FORM ─────────────────────────────────────────────
+function submitContact(e) {
+  e.preventDefault();
+  alert('Message envoyé ! Nous vous répondrons dans les plus brefs délais.');
+  e.target.reset();
+}
+
+// ── ADMIN ────────────────────────────────────────────────────
+const PWD = 'ARC@2026#Admin';
+
+function openAdmin() {
+  document.getElementById('admin-overlay').classList.add('open');
+  document.getElementById('admin-pwd').value = '';
+  document.getElementById('admin-error').style.display = 'none';
+  loadAdminFields();
+}
+
+function closeAdmin() {
+  document.getElementById('admin-overlay').classList.remove('open');
+  document.getElementById('admin-login').style.display = 'block';
+  document.getElementById('admin-content').style.display = 'none';
+}
+
+function checkPwd() {
+  const v = document.getElementById('admin-pwd').value;
+  if (v === PWD) {
+    document.getElementById('admin-login').style.display = 'none';
+    document.getElementById('admin-content').style.display = 'block';
+    loadAdminFields();
+  } else {
+    document.getElementById('admin-error').style.display = 'block';
+  }
+}
+
+function switchTab(t) {
+  document.querySelectorAll('.admin-tab').forEach((b,i) => {
+    const ids = ['accueil','actualites','directeur','contact-info','galerie-adm'];
+    b.classList.toggle('active', ids[i] === t);
+  });
+  document.querySelectorAll('.admin-section').forEach(s => {
+    s.classList.toggle('active', s.id === 'tab-' + t);
+  });
+  if (t === 'actualites') renderActuAdmin();
+}
+
+// ── STORAGE HELPERS ───────────────────────────────────────────
+function getData(key, def) {
+  try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : def; } catch { return def; }
+}
+function setData(key, val) {
+  try { localStorage.setItem(key, JSON.stringify(val)); } catch { alert('Stockage indisponible. Pour activer la sauvegarde, hébergez ce fichier sur GitHub Pages.'); }
+}
+
+// ── LOAD ADMIN FIELDS ─────────────────────────────────────────
+function loadAdminFields() {
+  // Accueil
+  document.getElementById('a-inscrip-title').value = getData('arc-inscrip-title', 'Inscriptions 2026–2027 ouvertes');
+  document.getElementById('a-inscrip-text').value = getData('arc-inscrip-text', 'Les dossiers d\'admission pour l\'année scolaire 2026–2027 sont disponibles. Rejoignez la famille ARC dès aujourd\'hui.');
+  document.getElementById('a-adm-desc').value = getData('arc-adm-desc', 'Places limitées pour 2026–2027. Processus simple, transparent et rapide.');
+  // Directeur
+  document.getElementById('a-dir-nom').value = getData('arc-dir-nom', 'Dr. Gambetta Aboubakar Nacro');
+  document.getElementById('a-dir-msg').value = getData('arc-dir-msg', 'L\'Apidon Royal College est né d\'une conviction profonde : l\'Afrique a besoin de leaders disciplinés, humbles et rigoureux.');
+  document.getElementById('a-dir-citation').value = getData('arc-dir-citation', 'Notre devise n\'est pas un slogan. C\'est un engagement quotidien envers l\'excellence.');
+  document.getElementById('a-dir-msg2').value = getData('arc-dir-msg2', 'Bienvenue dans notre famille, où chaque enfant est traité comme un futur bâtisseur de nation.');
+  // Contact
+  document.getElementById('a-adresse').value = getData('arc-adresse', 'Loumbila, Ouagadougou, Burkina Faso');
+  document.getElementById('a-tel').value = getData('arc-tel', '+226 XX XX XX XX');
+  document.getElementById('a-email').value = getData('arc-email', 'contact@apidonroyalcollege.com');
+  document.getElementById('a-horaires').value = getData('arc-horaires', 'Lun–Ven : 7h30–18h · Sam : 7h30–13h');
+  // Galerie
+  renderGalerieAdmin();
+  // Photos de contenu
+  document.getElementById('a-photo-directeur').value = getData('arc-photo-directeur', '');
+  document.getElementById('a-photo-internat').value = getData('arc-photo-internat', '');
+  document.getElementById('a-photo-prog').value = getData('arc-photo-prog', '');
+}
+
+// ── SAVE FUNCTIONS ────────────────────────────────────────────
+function showOk(id) {
+  const el = document.getElementById(id);
+  el.style.display = 'inline';
+  setTimeout(() => { el.style.display = 'none'; }, 2500);
+}
+
+function saveAccueil() {
+  const title = document.getElementById('a-inscrip-title').value;
+  const text = document.getElementById('a-inscrip-text').value;
+  const admDesc = document.getElementById('a-adm-desc').value;
+  setData('arc-inscrip-title', title);
+  setData('arc-inscrip-text', text);
+  setData('arc-adm-desc', admDesc);
+  document.getElementById('inscrip-title').textContent = title;
+  document.getElementById('inscrip-text').textContent = text;
+  document.getElementById('adm-desc-home').textContent = admDesc;
+  showOk('ok-accueil');
+}
+
+function saveDirecteur() {
+  const nom = document.getElementById('a-dir-nom').value;
+  const msg = document.getElementById('a-dir-msg').value;
+  const cit = document.getElementById('a-dir-citation').value;
+  const msg2 = document.getElementById('a-dir-msg2').value;
+  setData('arc-dir-nom', nom);
+  setData('arc-dir-msg', msg);
+  setData('arc-dir-citation', cit);
+  setData('arc-dir-msg2', msg2);
+  document.getElementById('dir-nom').textContent = nom;
+  document.getElementById('dir-nom2').textContent = nom;
+  document.getElementById('dir-message').textContent = msg;
+  document.getElementById('dir-citation').textContent = cit;
+  document.getElementById('dir-message2').textContent = msg2;
+  showOk('ok-directeur');
+}
+
+function saveContact() {
+  const adresse = document.getElementById('a-adresse').value;
+  const tel = document.getElementById('a-tel').value;
+  const email = document.getElementById('a-email').value;
+  const horaires = document.getElementById('a-horaires').value;
+  setData('arc-adresse', adresse);
+  setData('arc-tel', tel);
+  setData('arc-email', email);
+  setData('arc-horaires', horaires);
+  document.getElementById('contact-adresse').textContent = adresse;
+  document.getElementById('contact-tel').textContent = tel;
+  document.getElementById('contact-email').textContent = email;
+  document.getElementById('contact-horaires').textContent = horaires;
+  showOk('ok-contact');
+}
+
+// ── GALERIE AVEC CATÉGORIES ───────────────────────────────────
+function saveGaleriePhoto() {
+  const url = document.getElementById('ng-url').value.trim();
+  const legende = document.getElementById('ng-legende').value.trim();
+  const cat = document.getElementById('ng-cat').value;
+  if (!url) { alert('Collez une URL d\'image.'); return; }
+  const photos = getData('arc-galerie-photos', []);
+  photos.unshift({ id: Date.now(), url, legende, cat });
+  setData('arc-galerie-photos', photos);
+  document.getElementById('ng-url').value = '';
+  document.getElementById('ng-legende').value = '';
+  document.getElementById('gal-form-zone').style.display = 'none';
+  showOk('ok-galerie');
+  renderGalerieAdmin();
+  renderGalerie('tout');
+}
+
+function deleteGalPhoto(id) {
+  if (!confirm('Supprimer cette photo ?')) return;
+  let photos = getData('arc-galerie-photos', []);
+  photos = photos.filter(p => p.id !== id);
+  setData('arc-galerie-photos', photos);
+  renderGalerieAdmin();
+  renderGalerie(window._gCatActive || 'tout');
+}
+
+let _gCatActive = 'tout';
+function filterGalerie(cat) {
+  _gCatActive = cat;
+  document.querySelectorAll('.gfil').forEach(b => b.classList.toggle('active', b.getAttribute('onclick') && b.getAttribute('onclick').includes("'"+cat+"'")));
+  renderGalerie(cat);
+}
+
+function renderGalerie(cat) {
+  const grid = document.getElementById('galerie-grid');
+  let photos = getData('arc-galerie-photos', []);
+  if (cat !== 'tout') photos = photos.filter(p => p.cat === cat);
+  if (!photos.length) {
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:3rem 0;color:var(--gris);font-size:.9rem;">Aucune photo dans cette catégorie.</div>';
+    return;
+  }
+  grid.innerHTML = photos.map(p => `
+    <div class="g-item">
+      <img src="${p.url}" alt="${p.legende || 'Photo ARC'}" loading="lazy" onerror="this.parentElement.style.display='none'">
+      ${p.legende ? `<div style="padding:8px 10px;font-size:11px;color:var(--gris);font-weight:600;">${p.legende}</div>` : ''}
+    </div>`).join('');
+}
+
+function renderGalerieAdmin() {
+  const photos = getData('arc-galerie-photos', []);
+  const list = document.getElementById('gal-admin-list');
+  if (!list) return;
+  if (!photos.length) { list.innerHTML = '<p style="font-size:13px;color:var(--gris);margin-bottom:1rem">Aucune photo. Ajoutez-en une ci-dessus.</p>'; return; }
+  const cats = { ceremonies:'🎓 Cérémonies', sport:'⚽ Sport', classes:'📖 Classes', campus:'🏫 Campus', autre:'✨ Autre' };
+  list.innerHTML = photos.map(p => `
+    <div class="actu-admin-item" style="display:flex;align-items:center;gap:1rem;">
+      <img src="${p.url}" alt="" style="width:60px;height:60px;object-fit:cover;border-radius:4px;flex-shrink:0;" onerror="this.style.display='none'">
+      <div style="flex:1;min-width:0">
+        <div style="font-size:13px;font-weight:700;color:var(--nuit);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.legende || '(sans légende)'}</div>
+        <div style="font-size:11px;color:var(--gris)">${cats[p.cat] || p.cat}</div>
+      </div>
+      <button class="del-btn" onclick="deleteGalPhoto(${p.id})">🗑</button>
+    </div>`).join('');
+}
+
+// Photos de contenu du site
+function savePhotos() {
+  const dirUrl = document.getElementById('a-photo-directeur').value.trim();
+  const internatUrl = document.getElementById('a-photo-internat').value.trim();
+  const progUrl = document.getElementById('a-photo-prog').value.trim();
+  setData('arc-photo-directeur', dirUrl);
+  setData('arc-photo-internat', internatUrl);
+  setData('arc-photo-prog', progUrl);
+  applyPhotos(dirUrl, internatUrl, progUrl);
+  showOk('ok-photos');
+}
+
+function applyPhotos(dirUrl, internatUrl, progUrl) {
+  // Photo directeur
+  const dirImg = document.getElementById('dir-photo-img');
+  const dirPh = document.getElementById('dir-photo-placeholder');
+  if (dirUrl && dirImg) { dirImg.src = dirUrl; dirImg.style.display = 'block'; if(dirPh) dirPh.style.display = 'none'; }
+  // Photo internat
+  const intImg = document.getElementById('internat-img');
+  const intPh = document.getElementById('internat-placeholder');
+  if (internatUrl && intImg) { intImg.src = internatUrl; intImg.style.display = 'block'; if(intPh) intPh.style.display = 'none'; }
+  // Photo programmes
+  const progImg = document.getElementById('prog-img');
+  const progPh = document.getElementById('prog-placeholder');
+  if (progUrl && progImg) { progImg.src = progUrl; progImg.style.display = 'block'; if(progPh) progPh.style.display = 'none'; }
+}
+
+// ── ACTUALITÉS ────────────────────────────────────────────────
+function addActuForm() {
+  document.getElementById('actu-form-zone').style.display = 'block';
+  document.getElementById('na-date').value = new Date().toISOString().slice(0,10);
+}
+
+function saveActu() {
+  const titre = document.getElementById('na-titre').value.trim();
+  const date = document.getElementById('na-date').value;
+  const extrait = document.getElementById('na-extrait').value.trim();
+  const emoji = document.getElementById('na-emoji').value.trim();
+  const doc = document.getElementById('na-doc') ? document.getElementById('na-doc').value.trim() : '';
+  if (!titre || !extrait) { alert('Remplissez le titre et l\'extrait.'); return; }
+  const actus = getData('arc-actus', []);
+  actus.unshift({ id: Date.now(), titre, date, extrait, emoji: emoji || '📰', doc });
+  setData('arc-actus', actus);
+  document.getElementById('na-titre').value = '';
+  document.getElementById('na-extrait').value = '';
+  document.getElementById('na-emoji').value = '';
+  document.getElementById('actu-form-zone').style.display = 'none';
+  renderActuAdmin();
+  renderActuPage();
+}
+
+function deleteActu(id) {
+  if (!confirm('Supprimer cette actualité ?')) return;
+  let actus = getData('arc-actus', []);
+  actus = actus.filter(a => a.id !== id);
+  setData('arc-actus', actus);
+  renderActuAdmin();
+  renderActuPage();
+}
+
+function renderActuAdmin() {
+  const actus = getData('arc-actus', []);
+  const list = document.getElementById('actu-admin-list');
+  if (!actus.length) { list.innerHTML = '<p style="font-size:13px;color:var(--gris)">Aucune actualité. Ajoutez-en une ci-dessus.</p>'; return; }
+  list.innerHTML = actus.map(a => `
+    <div class="actu-admin-item">
+      <div class="actu-admin-item-header">
+        <strong>${a.emoji} ${a.titre}</strong>
+        <button class="del-btn" onclick="deleteActu(${a.id})">🗑 Supprimer</button>
+      </div>
+      <div style="font-size:11px;color:var(--gris)">${a.date} · ${a.extrait.substring(0,80)}…</div>
+    </div>`).join('');
+}
+
+function renderActuPage() {
+  const actus = getData('arc-actus', []);
+  const grid = document.getElementById('actu-grid');
+  if (!actus.length) {
+    grid.innerHTML = '<p style="color:var(--gris);text-align:center;padding:3rem 0">Aucune actualité pour le moment. Revenez bientôt !</p>';
+    return;
+  }
+  grid.innerHTML = actus.map(a => `
+    <div class="actu-card">
+      <div class="actu-img" style="display:flex;align-items:center;justify-content:center;font-size:3rem;">${a.emoji}</div>
+      <div class="actu-body">
+        <div class="actu-date">${formatDate(a.date)}</div>
+        <div class="actu-title">${a.titre}</div>
+        <p class="actu-excerpt">${a.extrait}</p>
+        ${a.doc ? `<a href="${a.doc}" target="_blank" rel="noopener" style="display:inline-block;margin-top:12px;font-size:11px;font-weight:700;color:var(--ciel);letter-spacing:.8px;text-transform:uppercase;border:1px solid var(--ciel);padding:5px 12px;border-radius:3px;">📎 Voir le document →</a>` : ''}
+      </div>
+    </div>`).join('');
+}
+
+function formatDate(d) {
+  if (!d) return '';
+  const months = ['Janv.','Févr.','Mars','Avr.','Mai','Juin','Juil.','Août','Sept.','Oct.','Nov.','Déc.'];
+  const [y,m,j] = d.split('-');
+  return `${j} ${months[parseInt(m)-1]} ${y}`;
+}
+
+// ── INIT ──────────────────────────────────────────────────────
+(function init() {
+  // Charger données sauvegardées
+  const it = getData('arc-inscrip-title', null);
+  if (it) document.getElementById('inscrip-title').textContent = it;
+  const txt = getData('arc-inscrip-text', null);
+  if (txt) document.getElementById('inscrip-text').textContent = txt;
+  const admD = getData('arc-adm-desc', null);
+  if (admD) document.getElementById('adm-desc-home').textContent = admD;
+  const nom = getData('arc-dir-nom', null);
+  if (nom) { document.getElementById('dir-nom').textContent = nom; document.getElementById('dir-nom2').textContent = nom; }
+  const msg = getData('arc-dir-msg', null);
+  if (msg) document.getElementById('dir-message').textContent = msg;
+  const cit = getData('arc-dir-citation', null);
+  if (cit) document.getElementById('dir-citation').textContent = cit;
+  const msg2 = getData('arc-dir-msg2', null);
+  if (msg2) document.getElementById('dir-message2').textContent = msg2;
+  const adr = getData('arc-adresse', null);
+  if (adr) document.getElementById('contact-adresse').textContent = adr;
+  const tel = getData('arc-tel', null);
+  if (tel) document.getElementById('contact-tel').textContent = tel;
+  const em = getData('arc-email', null);
+  if (em) document.getElementById('contact-email').textContent = em;
+  const hor = getData('arc-horaires', null);
+  if (hor) document.getElementById('contact-horaires').textContent = hor;
+  // Galerie
+  renderGalerie('tout');
+  // Photos de contenu
+  const dirUrl = getData('arc-photo-directeur', '');
+  const internatUrl = getData('arc-photo-internat', '');
+  const progUrl = getData('arc-photo-prog', '');
+  if (dirUrl || internatUrl || progUrl) applyPhotos(dirUrl, internatUrl, progUrl);
+  renderActuPage();
+  go('accueil');
+})();
+</script>
+</body>
+</html>
