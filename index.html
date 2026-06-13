@@ -96,12 +96,12 @@ button { cursor: pointer; font-family: var(--font-sans); border: none; backgroun
 .hero-desc { font-size: .9rem; color: rgba(255,255,255,.75); line-height: 1.9; max-width: 540px; margin: 0 auto 2.5rem; }
 .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 .hero-stats { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(15,40,80,.55); border-top: 1.5px solid rgba(255,255,255,.15); backdrop-filter: blur(6px); }
-.stats-inner { max-width: 880px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); }
-.stat { padding: 1.2rem 1rem; text-align: center; border-right: 1px solid rgba(255,255,255,.12); }
-.stat:last-child { border-right: none; }
-.stat-n { font-family: var(--font-serif); font-size: 2rem; font-weight: 900; color: var(--or); line-height: 1; }
-.stat-l { font-size: 9px; color: rgba(255,255,255,.6); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; font-weight: 600; }
-
+<div class="stats-inner" id="stats-inner">
+  <div class="stat"><div class="stat-n">500+</div><div class="stat-l">Élèves formés</div></div>
+  <div class="stat"><div class="stat-n">6 ans</div><div class="stat-l">d'excellence</div></div>
+  <div class="stat"><div class="stat-n">Fr / En</div><div class="stat-l">Bilingue</div></div>
+  <div class="stat"><div class="stat-n">Bac</div><div class="stat-l">6ème → Terminale</div></div>
+</div>
 /* APERÇUS */
 .apercu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.2rem; margin-top: 3rem; }
 .apercu-card { background: var(--blanc); border-radius: var(--radius); padding: 2rem 1.5rem; border: 2px solid var(--border); border-top: 4px solid var(--ciel); cursor: pointer; transition: transform .22s, box-shadow .22s; }
@@ -290,12 +290,15 @@ footer { background: #0f2040; color: rgba(255,255,255,.7); padding: 4rem 1.5rem 
 <nav id="nav">
   <div class="nav-inner">
     <div class="logo-wrap" onclick="go('accueil')">
-      <div style="width:36px;height:36px;background:var(--or);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--nuit);font-size:14px;font-family:var(--font-sans);">ARC</div>
-      <div>
-        <div class="logo-name">Apidon Royal College</div>
-        <div class="logo-sub">Prytanée Civil · Loumbila</div>
-      </div>
-    </div>
+  <div id="logo-circle" style="width:36px;height:36px;background:var(--or);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--nuit);font-size:14px;font-family:var(--font-sans);overflow:hidden;">
+    <img id="logo-img" src="" alt="Logo" style="display:none;width:100%;height:100%;object-fit:cover;">
+    <span id="logo-letters">ARC</span>
+  </div>
+  <div>
+    <div class="logo-name" id="logo-nom">Apidon Royal College</div>
+    <div class="logo-sub" id="logo-sous">Prytanée Civil · Loumbila</div>
+  </div>
+  </div>
     <div class="nav-links">
       <button class="nb on" onclick="go('accueil')">Accueil</button>
       <button class="nb" onclick="go('directeur')">Directeur</button>
@@ -335,14 +338,14 @@ footer { background: #0f2040; color: rgba(255,255,255,.7); padding: 4rem 1.5rem 
       <svg width="220" height="90" viewBox="0 0 220 90" xmlns="http://www.w3.org/2000/svg"><defs><filter id="c2"><feGaussianBlur stdDeviation="4"/></filter></defs><g filter="url(#c2)"><ellipse cx="110" cy="65" rx="100" ry="22" fill="rgba(255,255,255,0.6)"/><ellipse cx="75" cy="52" rx="55" ry="38" fill="rgba(255,255,255,0.55)"/><ellipse cx="145" cy="45" rx="60" ry="40" fill="rgba(255,255,255,0.62)"/></g></svg>
     </div>
     <div class="hero-content">
-      <div class="hero-eyebrow">Loumbila · Ouagadougou · Burkina Faso · Fondé en 2018</div>
-      <h1 class="hero-h1">Apidon<br><em>Royal College</em></h1>
-      <p class="hero-motto">Discipline · Humilité · Rigueur</p>
-      <p style="font-size:.8rem;color:rgba(255,255,255,.65);letter-spacing:1px;margin-bottom:.8rem;font-style:italic">Écrire le changement · Construire le futur · Bâtir la nation</p>
-      <p class="hero-desc">Prytanée Civil bilingue formant les leaders de demain au cœur de l'Afrique de l'Ouest. Du collège à la terminale, dans un cadre structurant et rigoureux.</p>
+      <div class="hero-eyebrow" id="hero-eyebrow">Loumbila · Ouagadougou · Burkina Faso · Fondé en 2018</div>
+      <h1 class="hero-h1"><span id="hero-h1-l1">Apidon</span><br><em id="hero-h1-l2">Royal College</em></h1>
+      <p class="hero-motto" id="hero-motto">Discipline · Humilité · Rigueur</p>
+<p id="hero-submotto" style="font-size:.8rem;color:rgba(255,255,255,.65);letter-spacing:1px;margin-bottom:.8rem;font-style:italic">Écrire le changement...
+<p class="hero-desc" id="hero-desc">Prytanée Civil bilingue...
       <div class="hero-btns">
-        <button class="btn btn-or" onclick="go('admissions')">S'inscrire 2026–2027</button>
-        <button class="btn btn-outline-white" onclick="go('vie')">Découvrir l'école</button>
+        <button class="btn btn-or" id="hero-btn1" onclick="go('admissions')">S'inscrire 2026–2027</button>
+        <button class="btn btn-outline-white" id="hero-btn2" onclick="go('vie')">Découvrir l'école</button>
       </div>
     </div>
     <div class="hero-stats">
@@ -403,9 +406,9 @@ footer { background: #0f2040; color: rgba(255,255,255,.7); padding: 4rem 1.5rem 
   <!-- CTA -->
   <section class="cta-band">
     <div class="container tc">
-      <span class="label" style="color:var(--or)">Always striving for the best</span>
-      <h2>Rejoignez la famille ARC</h2>
-      <p>Un environnement rigoureux, bienveillant et bilingue pour préparer vos enfants à l'excellence.</p>
+    <span class="label" id="cta-label" style="color:var(--or)">Always striving for the best</span>
+<h2 id="cta-titre">Rejoignez la famille ARC</h2>
+<p id="cta-texte">Un environnement rigoureux, bienveillant et bilingue pour préparer vos enfants à l'excellence.</p>
       <button class="btn btn-or" onclick="go('contact')">Nous contacter</button>
     </div>
   </section>
@@ -458,8 +461,8 @@ footer { background: #0f2040; color: rgba(255,255,255,.7); padding: 4rem 1.5rem 
         <div>
           <div class="rubrique-icon">🏠</div>
           <div class="filet"></div>
-          <h2 class="rubrique-h">Internat</h2>
-          <p class="rubrique-p">Hébergement complet pour les collégiens et lycéens. Suivi des devoirs, restauration équilibrée et activités du soir dans un cadre sécurisé. Nos éducateurs assurent un encadrement permanent 24h/24.</p>
+          <h2 class="rubrique-h" id="internat-h">Internat</h2>
+          <p class="rubrique-p" id="internat-p">Hébergement complet pour les collégiens et lycéens. Suivi des devoirs, restauration équilibrée et activités du soir dans un cadre sécurisé. Nos éducateurs assurent un encadrement permanent 24h/24.</p>
         </div>
         <div class="rubrique-img" id="internat-img-wrap">
           <div id="internat-placeholder" style="width:100%;height:340px;background:linear-gradient(135deg,#5AADE0,#1A3A6B);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:4rem;">🏠</div>
@@ -474,8 +477,8 @@ footer { background: #0f2040; color: rgba(255,255,255,.7); padding: 4rem 1.5rem 
         <div>
           <div class="rubrique-icon">📚</div>
           <div class="filet"></div>
-          <h2 class="rubrique-h">Programmes bilingues</h2>
-          <p class="rubrique-p">Du CE1 à la Terminale, nos programmes suivent les curricula nationaux et sont enrichis par un enseignement bilingue français-anglais. Nos enseignants qualifiés préparent les élèves aux examens nationaux et aux concours.</p>
+          <h2 class="rubrique-h" id="prog-h">Programmes bilingues</h2>
+          <p class="rubrique-p" id="prog-p">Du CE1 à la Terminale, nos programmes suivent les curricula nationaux et sont enrichis par un enseignement bilingue français-anglais. Nos enseignants qualifiés préparent les élèves aux examens nationaux et aux concours.</p>
         </div>
       </div>
     </div>
@@ -618,7 +621,7 @@ footer { background: #0f2040; color: rgba(255,255,255,.7); padding: 4rem 1.5rem 
     <div>
       <div class="ft-logo-name">Apidon Royal College</div>
       <div class="ft-logo-sub">Prytanée Civil · Loumbila</div>
-      <p class="ft-desc">Prytanée Civil bilingue formant les leaders de demain au cœur de l'Afrique de l'Ouest. Discipline, Humilité, Rigueur.</p>
+      <p class="ft-desc" id="ft-desc">Prytanée Civil bilingue formant les leaders de demain au cœur de l'Afrique de l'Ouest. Discipline, Humilité, Rigueur.</p>
     </div>
     <div class="ft-col"><h4>Navigation</h4><ul>
       <li><button onclick="go('accueil')">Accueil</button></li>
@@ -638,7 +641,7 @@ footer { background: #0f2040; color: rgba(255,255,255,.7); padding: 4rem 1.5rem 
     </ul></div>
   </div>
   <div class="ft-bottom">
-    <p>© 2026 Apidon Royal College. Tous droits réservés.</p>
+   <p id="ft-copy">© 2026 Apidon Royal College. Tous droits réservés.</p>
     <p style="font-size:10px;color:rgba(255,255,255,.4)">Always striving for the best</p>
   </div>
 </footer>
@@ -665,18 +668,129 @@ footer { background: #0f2040; color: rgba(255,255,255,.7); padding: 4rem 1.5rem 
 
   <!-- CONTENU ADMIN -->
   <div id="admin-content" style="display:none;background:#fff;border-radius:12px;width:min(95vw,700px);max-height:88vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,.35);">
+   <!-- ═══ ONGLET STYLE ═══ -->
+<div class="admin-section" id="tab-style">
+  <h3 style="font-size:1rem;font-weight:700;color:var(--nuit);margin-bottom:1.2rem">🎨 Couleurs & Style</h3>
+
+  <h4 style="font-size:.85rem;font-weight:700;color:var(--gris);text-transform:uppercase;letter-spacing:1px;margin-bottom:1rem">Palette principale</h4>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem">
+    <div class="admin-field"><label>Couleur Ciel (bleu principal)</label><input type="color" id="s-ciel" value="#5AADE0"></div>
+    <div class="admin-field"><label>Couleur Or (accents)</label><input type="color" id="s-or" value="#C8960C"></div>
+    <div class="admin-field"><label>Couleur Nuit (fond sombre)</label><input type="color" id="s-nuit" value="#1A3A6B"></div>
+    <div class="admin-field"><label>Couleur Texte</label><input type="color" id="s-texte" value="#111827"></div>
+    <div class="admin-field"><label>Fond de page (gris clair)</label><input type="color" id="s-fond" value="#F8FAFB"></div>
+    <div class="admin-field"><label>Couleur Blanc (cartes, nav)</label><input type="color" id="s-blanc" value="#ffffff"></div>
+  </div>
+
+  <h4 style="font-size:.85rem;font-weight:700;color:var(--gris);text-transform:uppercase;letter-spacing:1px;margin-bottom:1rem">Hero (section principale)</h4>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem">
+    <div class="admin-field"><label>Couleur overlay (voile)</label><input type="color" id="s-overlay-color" value="#1A3A6B"></div>
+    <div class="admin-field"><label>Opacité overlay (0.1 à 0.9)</label><input type="number" id="s-overlay-opacity" min="0.1" max="0.9" step="0.05" value="0.55" style="width:100%;padding:10px 12px;border:2px solid var(--border);border-radius:4px;font-size:13px;"></div>
+  </div>
+
+  <h4 style="font-size:.85rem;font-weight:700;color:var(--gris);text-transform:uppercase;letter-spacing:1px;margin-bottom:1rem">Forme des boutons</h4>
+  <div class="admin-field">
+    <label>Border-radius des boutons</label>
+    <select id="s-btn-radius">
+      <option value="0px">Carré (0px)</option>
+      <option value="4px" selected>Légèrement arrondi (4px) — actuel</option>
+      <option value="8px">Arrondi (8px)</option>
+      <option value="12px">Très arrondi (12px)</option>
+      <option value="999px">Pilule / Capsule (999px)</option>
+    </select>
+  </div>
+
+  <h4 style="font-size:.85rem;font-weight:700;color:var(--gris);text-transform:uppercase;letter-spacing:1px;margin-bottom:1rem">Bandeau inscription</h4>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem">
+    <div class="admin-field"><label>Couleur fond (début dégradé)</label><input type="color" id="s-band1" value="#C8960C"></div>
+    <div class="admin-field"><label>Couleur fond (fin dégradé)</label><input type="color" id="s-band2" value="#F5C518"></div>
+  </div>
+
+  <button class="admin-save" onclick="saveStyle()">💾 Appliquer le style</button>
+  <span class="admin-save-ok" id="ok-style">✅ Style appliqué !</span>
+</div>
+
+<!-- ═══ ONGLET LOGO & STATS ═══ -->
+<div class="admin-section" id="tab-logo-stats">
+  <h3 style="font-size:1rem;font-weight:700;color:var(--nuit);margin-bottom:1.2rem">🏷️ Logo & Statistiques</h3>
+
+  <h4 style="font-size:.85rem;font-weight:700;color:var(--gris);text-transform:uppercase;letter-spacing:1px;margin-bottom:1rem">Logo</h4>
+  <div class="admin-field"><label>URL image logo (postimg)</label><input type="text" id="l-logo-url" placeholder="https://i.postimg.cc/xxx/logo.png"><div class="photo-upload-note">Si rempli, remplace le cercle ARC par votre image. Format carré recommandé.</div></div>
+  <div class="admin-field"><label>Nom de l'école (nav)</label><input type="text" id="l-nom-ecole" placeholder="Apidon Royal College"></div>
+  <div class="admin-field"><label>Sous-titre logo</label><input type="text" id="l-sous-titre" placeholder="Prytanée Civil · Loumbila"></div>
+  <div class="admin-field"><label>Forme du cercle logo</label>
+    <select id="l-logo-radius">
+      <option value="50%">Cercle (actuel)</option>
+      <option value="8px">Carré arrondi</option>
+      <option value="0px">Carré strict</option>
+      <option value="25%">Losange arrondi</option>
+    </select>
+  </div>
+  <div class="admin-field"><label>Couleur fond logo (si pas d'image)</label><input type="color" id="l-logo-bg" value="#C8960C"></div>
+
+  <hr class="admin-divider">
+
+  <h4 style="font-size:.85rem;font-weight:700;color:var(--gris);text-transform:uppercase;letter-spacing:1px;margin-bottom:1rem">Statistiques hero</h4>
+  <p style="font-size:12px;color:var(--gris);margin-bottom:1rem">Tu peux modifier, ajouter ou supprimer les stats qui apparaissent en bas du hero.</p>
+  <div id="stats-admin-list"></div>
+  <button class="add-actu-btn" onclick="addStat()" style="margin-top:.5rem">+ Ajouter une stat</button>
+
+  <hr class="admin-divider">
+  <button class="admin-save" onclick="saveLogoStats()">💾 Enregistrer</button>
+  <span class="admin-save-ok" id="ok-logo-stats">✅ Enregistré !</span>
+</div>
+
+<!-- ═══ ONGLET TEXTES ═══ -->
+<div class="admin-section" id="tab-textes">
+  <h3 style="font-size:1rem;font-weight:700;color:var(--nuit);margin-bottom:1.2rem">✏️ Tous les textes du site</h3>
+
+  <h4 style="font-size:.85rem;font-weight:700;color:var(--gris);text-transform:uppercase;letter-spacing:1px;margin-bottom:1rem">Section Hero</h4>
+  <div class="admin-field"><label>Texte eyebrow (petit bandeau)</label><input type="text" id="t-eyebrow" placeholder="Loumbila · Ouagadougou · Burkina Faso · Fondé en 2018"></div>
+  <div class="admin-field"><label>Titre principal ligne 1</label><input type="text" id="t-h1-l1" placeholder="Apidon"></div>
+  <div class="admin-field"><label>Titre principal ligne 2 (en italique doré)</label><input type="text" id="t-h1-l2" placeholder="Royal College"></div>
+  <div class="admin-field"><label>Devise (Discipline · Humilité · Rigueur)</label><input type="text" id="t-motto" placeholder="Discipline · Humilité · Rigueur"></div>
+  <div class="admin-field"><label>Sous-devise (italique)</label><input type="text" id="t-submotto" placeholder="Écrire le changement · Construire le futur · Bâtir la nation"></div>
+  <div class="admin-field"><label>Description hero</label><textarea id="t-hero-desc" rows="2"></textarea></div>
+  <div class="admin-field"><label>Texte bouton 1 (inscription)</label><input type="text" id="t-btn1" placeholder="S'inscrire 2026–2027"></div>
+  <div class="admin-field"><label>Texte bouton 2 (découvrir)</label><input type="text" id="t-btn2" placeholder="Découvrir l'école"></div>
+
+  <hr class="admin-divider">
+  <h4 style="font-size:.85rem;font-weight:700;color:var(--gris);text-transform:uppercase;letter-spacing:1px;margin-bottom:1rem">Section CTA (fond bleu nuit)</h4>
+  <div class="admin-field"><label>Label au-dessus</label><input type="text" id="t-cta-label" placeholder="Always striving for the best"></div>
+  <div class="admin-field"><label>Titre</label><input type="text" id="t-cta-titre" placeholder="Rejoignez la famille ARC"></div>
+  <div class="admin-field"><label>Texte</label><textarea id="t-cta-texte" rows="2"></textarea></div>
+
+  <hr class="admin-divider">
+  <h4 style="font-size:.85rem;font-weight:700;color:var(--gris);text-transform:uppercase;letter-spacing:1px;margin-bottom:1rem">Vie scolaire</h4>
+  <div class="admin-field"><label>Titre section Internat</label><input type="text" id="t-internat-h" placeholder="Internat"></div>
+  <div class="admin-field"><label>Texte Internat</label><textarea id="t-internat-p" rows="3"></textarea></div>
+  <div class="admin-field"><label>Titre section Programmes</label><input type="text" id="t-prog-h" placeholder="Programmes bilingues"></div>
+  <div class="admin-field"><label>Texte Programmes</label><textarea id="t-prog-p" rows="3"></textarea></div>
+
+  <hr class="admin-divider">
+  <h4 style="font-size:.85rem;font-weight:700;color:var(--gris);text-transform:uppercase;letter-spacing:1px;margin-bottom:1rem">Footer</h4>
+  <div class="admin-field"><label>Description footer</label><textarea id="t-ft-desc" rows="2"></textarea></div>
+  <div class="admin-field"><label>Copyright</label><input type="text" id="t-ft-copy" placeholder="© 2026 Apidon Royal College. Tous droits réservés."></div>
+
+  <hr class="admin-divider">
+  <button class="admin-save" onclick="saveTextes()">💾 Enregistrer les textes</button>
+  <span class="admin-save-ok" id="ok-textes">✅ Textes enregistrés !</span>
+  </div>
     <div style="padding:2rem 2.5rem">
       <div class="admin-header">
         <h2 style="font-family:var(--font-serif);font-size:1.5rem;color:var(--nuit)">🔧 Panneau Admin ARC</h2>
         <button onclick="closeAdmin()" style="font-size:22px;cursor:pointer;color:var(--gris);background:none;border:none;">✕</button>
       </div>
       <div class="admin-tabs">
-        <button class="admin-tab active" onclick="switchTab('accueil')">Accueil</button>
-        <button class="admin-tab" onclick="switchTab('actualites')">Actualités</button>
-        <button class="admin-tab" onclick="switchTab('directeur')">Directeur</button>
-        <button class="admin-tab" onclick="switchTab('contact-info')">Contact</button>
-        <button class="admin-tab" onclick="switchTab('galerie-adm')">Galerie</button>
-      </div>
+  <button class="admin-tab active" onclick="switchTab('accueil')">Accueil</button>
+  <button class="admin-tab" onclick="switchTab('actualites')">Actualités</button>
+  <button class="admin-tab" onclick="switchTab('directeur')">Directeur</button>
+  <button class="admin-tab" onclick="switchTab('contact-info')">Contact</button>
+  <button class="admin-tab" onclick="switchTab('galerie-adm')">Galerie</button>
+  <button class="admin-tab" onclick="switchTab('style')">🎨 Style</button>
+  <button class="admin-tab" onclick="switchTab('logo-stats')">🏷️ Logo & Stats</button>
+  <button class="admin-tab" onclick="switchTab('textes')">✏️ Textes</button>
+  </div>
 
       <!-- Section Accueil -->
       <div class="admin-section active" id="tab-accueil">
@@ -830,14 +944,16 @@ function checkPwd() {
 
 function switchTab(t) {
   document.querySelectorAll('.admin-tab').forEach((b,i) => {
-    const ids = ['accueil','actualites','directeur','contact-info','galerie-adm'];
+    const ids = ['accueil','actualites','directeur','contact-info','galerie-adm','style','logo-stats','textes'];
     b.classList.toggle('active', ids[i] === t);
   });
   document.querySelectorAll('.admin-section').forEach(s => {
     s.classList.toggle('active', s.id === 'tab-' + t);
   });
   if (t === 'actualites') renderActuAdmin();
-}
+} if (t === 'style') loadStyleFields();
+if (t === 'logo-stats') loadLogoStatsFields();
+if (t === 'textes') loadTextesFields();
 
 // ── STORAGE HELPERS ───────────────────────────────────────────
 function getData(key, def) {
@@ -1089,7 +1205,231 @@ function formatDate(d) {
   return `${j} ${months[parseInt(m)-1]} ${y}`;
 }
 
-// ── INIT ──────────────────────────────────────────────────────
+// ── STYLE ─────────────────────────────────────────────────────
+function saveStyle() {
+  const vals = {
+    'arc-s-ciel': document.getElementById('s-ciel').value,
+    'arc-s-or': document.getElementById('s-or').value,
+    'arc-s-nuit': document.getElementById('s-nuit').value,
+    'arc-s-texte': document.getElementById('s-texte').value,
+    'arc-s-fond': document.getElementById('s-fond').value,
+    'arc-s-blanc': document.getElementById('s-blanc').value,
+    'arc-s-overlay-color': document.getElementById('s-overlay-color').value,
+    'arc-s-overlay-opacity': document.getElementById('s-overlay-opacity').value,
+    'arc-s-btn-radius': document.getElementById('s-btn-radius').value,
+    'arc-s-band1': document.getElementById('s-band1').value,
+    'arc-s-band2': document.getElementById('s-band2').value,
+  };
+  Object.entries(vals).forEach(([k,v]) => setData(k, v));
+  applyStyle(vals);
+  showOk('ok-style');
+}
+
+function applyStyle(v) {
+  const r = document.documentElement.style;
+  if (v['arc-s-ciel']) r.setProperty('--ciel', v['arc-s-ciel']);
+  if (v['arc-s-or']) r.setProperty('--or', v['arc-s-or']);
+  if (v['arc-s-nuit']) r.setProperty('--nuit', v['arc-s-nuit']);
+  if (v['arc-s-texte']) r.setProperty('--texte', v['arc-s-texte']);
+  if (v['arc-s-fond']) r.setProperty('--fond', v['arc-s-fond']);
+  if (v['arc-s-blanc']) r.setProperty('--blanc', v['arc-s-blanc']);
+  if (v['arc-s-btn-radius']) r.setProperty('--radius', v['arc-s-btn-radius']);
+  // Overlay hero
+  const oc = v['arc-s-overlay-color'] || '#1A3A6B';
+  const oo = v['arc-s-overlay-opacity'] || '0.55';
+  const hex2rgb = h => { const r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16); return `${r},${g},${b}`; };
+  const rgb = hex2rgb(oc);
+  document.querySelector('.hero').style.backgroundImage =
+    `linear-gradient(rgba(${rgb},${oo}),rgba(${rgb},${parseFloat(oo)-.1})),url('https://i.postimg.cc/7Y1CfQ84/Screenshot-20260613-130911-com-anthropic-claude-Main-Activity.jpg')`;
+  // Bandeau inscription
+  const b1 = v['arc-s-band1'] || '#C8960C';
+  const b2 = v['arc-s-band2'] || '#F5C518';
+  const band = document.querySelector('.inscrip-band');
+  if (band) band.style.background = `linear-gradient(135deg,${b1},${b2})`;
+}
+
+function loadStyleFields() {
+  const fields = ['ciel','or','nuit','texte','fond','blanc','overlay-color','band1','band2'];
+  fields.forEach(f => {
+    const el = document.getElementById('s-'+f);
+    const v = getData('arc-s-'+f, null);
+    if (el && v) el.value = v;
+  });
+  const op = getData('arc-s-overlay-opacity', null);
+  if (op) document.getElementById('s-overlay-opacity').value = op;
+  const br = getData('arc-s-btn-radius', null);
+  if (br) document.getElementById('s-btn-radius').value = br;
+}
+
+// ── LOGO & STATS ──────────────────────────────────────────────
+let _stats = [];
+
+function loadLogoStatsFields() {
+  document.getElementById('l-logo-url').value = getData('arc-logo-url', '');
+  document.getElementById('l-nom-ecole').value = getData('arc-logo-nom', 'Apidon Royal College');
+  document.getElementById('l-sous-titre').value = getData('arc-logo-sous', 'Prytanée Civil · Loumbila');
+  document.getElementById('l-logo-radius').value = getData('arc-logo-radius', '50%');
+  document.getElementById('l-logo-bg').value = getData('arc-logo-bg', '#C8960C');
+  _stats = getData('arc-stats', [
+    {n:'500+', l:'Élèves formés'},
+    {n:'6 ans', l:"d'excellence"},
+    {n:'Fr / En', l:'Bilingue'},
+    {n:'Bac', l:'6ème → Terminale'}
+  ]);
+  renderStatsAdmin();
+}
+
+function renderStatsAdmin() {
+  const el = document.getElementById('stats-admin-list');
+  if (!el) return;
+  el.innerHTML = _stats.map((s,i) => `
+    <div style="display:flex;gap:1rem;align-items:center;background:var(--fond);border:1px solid var(--border);border-radius:8px;padding:1rem;margin-bottom:.8rem;">
+      <div style="flex:1"><input type="text" value="${s.n}" onchange="_stats[${i}].n=this.value" placeholder="Chiffre / valeur" style="width:100%;padding:8px 10px;border:2px solid var(--border);border-radius:4px;font-size:13px;margin-bottom:.4rem;font-family:var(--font-sans);">
+      <input type="text" value="${s.l}" onchange="_stats[${i}].l=this.value" placeholder="Légende" style="width:100%;padding:8px 10px;border:2px solid var(--border);border-radius:4px;font-size:13px;font-family:var(--font-sans);"></div>
+      <button onclick="_stats.splice(${i},1);renderStatsAdmin()" style="color:#dc2626;background:none;border:none;cursor:pointer;font-size:18px;">🗑</button>
+    </div>`).join('');
+}
+
+function addStat() {
+  _stats.push({n:'', l:''});
+  renderStatsAdmin();
+}
+
+function saveLogoStats() {
+  // Logo
+  const url = document.getElementById('l-logo-url').value.trim();
+  const nom = document.getElementById('l-nom-ecole').value.trim();
+  const sous = document.getElementById('l-sous-titre').value.trim();
+  const radius = document.getElementById('l-logo-radius').value;
+  const bg = document.getElementById('l-logo-bg').value;
+  setData('arc-logo-url', url);
+  setData('arc-logo-nom', nom);
+  setData('arc-logo-sous', sous);
+  setData('arc-logo-radius', radius);
+  setData('arc-logo-bg', bg);
+  applyLogo(url, nom, sous, radius, bg);
+  // Stats
+  setData('arc-stats', _stats);
+  renderStatsHero();
+  showOk('ok-logo-stats');
+}
+
+function applyLogo(url, nom, sous, radius, bg) {
+  const circle = document.getElementById('logo-circle');
+  const img = document.getElementById('logo-img');
+  const letters = document.getElementById('logo-letters');
+  if (circle) {
+    circle.style.borderRadius = radius || '50%';
+    circle.style.background = bg || 'var(--or)';
+  }
+  if (url && img) {
+    img.src = url; img.style.display = 'block';
+    if (letters) letters.style.display = 'none';
+  } else if (img) {
+    img.style.display = 'none';
+    if (letters) letters.style.display = '';
+  }
+  if (nom) { const el = document.getElementById('logo-nom'); if(el) el.textContent = nom; }
+  if (sous) { const el = document.getElementById('logo-sous'); if(el) el.textContent = sous; }
+}
+
+function renderStatsHero() {
+  const stats = getData('arc-stats', null);
+  if (!stats) return;
+  const inner = document.getElementById('stats-inner');
+  if (!inner) return;
+  inner.style.gridTemplateColumns = `repeat(${stats.length},1fr)`;
+  inner.innerHTML = stats.map(s => `
+    <div class="stat">
+      <div class="stat-n">${s.n}</div>
+      <div class="stat-l">${s.l}</div>
+    </div>`).join('');
+}
+
+// ── TEXTES ────────────────────────────────────────────────────
+function loadTextesFields() {
+  const g = (id, def) => getData(id, def);
+  const s = (id, val) => { const el = document.getElementById(id); if(el) el.value = val; };
+  s('t-eyebrow', g('arc-t-eyebrow', 'Loumbila · Ouagadougou · Burkina Faso · Fondé en 2018'));
+  s('t-h1-l1', g('arc-t-h1-l1', 'Apidon'));
+  s('t-h1-l2', g('arc-t-h1-l2', 'Royal College'));
+  s('t-motto', g('arc-t-motto', 'Discipline · Humilité · Rigueur'));
+  s('t-submotto', g('arc-t-submotto', 'Écrire le changement · Construire le futur · Bâtir la nation'));
+  s('t-hero-desc', g('arc-t-hero-desc', 'Prytanée Civil bilingue formant les leaders de demain au cœur de l\'Afrique de l\'Ouest.'));
+  s('t-btn1', g('arc-t-btn1', 'S\'inscrire 2026–2027'));
+  s('t-btn2', g('arc-t-btn2', 'Découvrir l\'école'));
+  s('t-cta-label', g('arc-t-cta-label', 'Always striving for the best'));
+  s('t-cta-titre', g('arc-t-cta-titre', 'Rejoignez la famille ARC'));
+  s('t-cta-texte', g('arc-t-cta-texte', 'Un environnement rigoureux, bienveillant et bilingue pour préparer vos enfants à l\'excellence.'));
+  s('t-internat-h', g('arc-t-internat-h', 'Internat'));
+  s('t-internat-p', g('arc-t-internat-p', 'Hébergement complet pour les collégiens et lycéens.'));
+  s('t-prog-h', g('arc-t-prog-h', 'Programmes bilingues'));
+  s('t-prog-p', g('arc-t-prog-p', 'Du CE1 à la Terminale, nos programmes suivent les curricula nationaux.'));
+  s('t-ft-desc', g('arc-t-ft-desc', 'Prytanée Civil bilingue formant les leaders de demain au cœur de l\'Afrique de l\'Ouest.'));
+  s('t-ft-copy', g('arc-t-ft-copy', '© 2026 Apidon Royal College. Tous droits réservés.'));
+}
+
+function saveTextes() {
+  const pairs = [
+    ['arc-t-eyebrow','hero-eyebrow','textContent'],
+    ['arc-t-h1-l1','hero-h1-l1','textContent'],
+    ['arc-t-h1-l2','hero-h1-l2','textContent'],
+    ['arc-t-motto','hero-motto','textContent'],
+    ['arc-t-submotto','hero-submotto','textContent'],
+    ['arc-t-hero-desc','hero-desc','textContent'],
+    ['arc-t-btn1','hero-btn1','textContent'],
+    ['arc-t-btn2','hero-btn2','textContent'],
+    ['arc-t-cta-label','cta-label','textContent'],
+    ['arc-t-cta-titre','cta-titre','textContent'],
+    ['arc-t-cta-texte','cta-texte','textContent'],
+    ['arc-t-internat-h','internat-h','textContent'],
+    ['arc-t-internat-p','internat-p','textContent'],
+    ['arc-t-prog-h','prog-h','textContent'],
+    ['arc-t-prog-p','prog-p','textContent'],
+    ['arc-t-ft-desc','ft-desc','textContent'],
+    ['arc-t-ft-copy','ft-copy','textContent'],
+  ];
+  pairs.forEach(([key, elId]) => {
+    const input = document.getElementById(key.replace('arc-','t-').replace(/arc-t-/,'t-'));
+    // cherche le champ par id construit
+    const fieldId = 't-' + key.replace('arc-t-','');
+    const field = document.getElementById(fieldId);
+    const domEl = document.getElementById(elId);
+    if (field && domEl) {
+      setData(key, field.value);
+      domEl.textContent = field.value;
+    }
+  });
+  showOk('ok-textes');
+}
+
+function applyTextes() {
+  const map = [
+    ['arc-t-eyebrow','hero-eyebrow'],
+    ['arc-t-h1-l1','hero-h1-l1'],
+    ['arc-t-h1-l2','hero-h1-l2'],
+    ['arc-t-motto','hero-motto'],
+    ['arc-t-submotto','hero-submotto'],
+    ['arc-t-hero-desc','hero-desc'],
+    ['arc-t-btn1','hero-btn1'],
+    ['arc-t-btn2','hero-btn2'],
+    ['arc-t-cta-label','cta-label'],
+    ['arc-t-cta-titre','cta-titre'],
+    ['arc-t-cta-texte','cta-texte'],
+    ['arc-t-internat-h','internat-h'],
+    ['arc-t-internat-p','internat-p'],
+    ['arc-t-prog-h','prog-h'],
+    ['arc-t-prog-p','prog-p'],
+    ['arc-t-ft-desc','ft-desc'],
+    ['arc-t-ft-copy','ft-copy'],
+  ];
+  map.forEach(([key, elId]) => {
+    const v = getData(key, null);
+    const el = document.getElementById(elId);
+    if (v && el) el.textContent = v;
+  });
+}
+  // ── INIT ──────────────────────────────────────────────────────
 (function init() {
   // Charger données sauvegardées
   const it = getData('arc-inscrip-title', null);
@@ -1122,7 +1462,24 @@ function formatDate(d) {
   const progUrl = getData('arc-photo-prog', '');
   if (dirUrl || internatUrl || progUrl) applyPhotos(dirUrl, internatUrl, progUrl);
   renderActuPage();
-  go('accueil');
+  // Style
+const styleVals = {};
+['ciel','or','nuit','texte','fond','blanc','overlay-color','overlay-opacity','btn-radius','band1','band2'].forEach(k => {
+  const v = getData('arc-s-'+k, null);
+  if (v) styleVals['arc-s-'+k] = v;
+});
+if (Object.keys(styleVals).length) applyStyle(styleVals);
+// Logo
+const logoUrl = getData('arc-logo-url','');
+const logoNom = getData('arc-logo-nom','');
+const logoSous = getData('arc-logo-sous','');
+const logoRadius = getData('arc-logo-radius','50%');
+const logoBg = getData('arc-logo-bg','#C8960C');
+applyLogo(logoUrl, logoNom, logoSous, logoRadius, logoBg);
+renderStatsHero();
+// Textes
+applyTextes();
+go('accueil');
 })();
 </script>
 </body>
